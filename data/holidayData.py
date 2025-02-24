@@ -2,7 +2,7 @@ import pandas as pd
 import holidays
 
 # Create a date range for historical data
-date_range = pd.date_range(start="2025-03-29", end="2025-12-31", freq="D")
+date_range = pd.date_range(start="2000-01-01", end="2025-12-31", freq="D")
 df = pd.DataFrame(date_range, columns=["date"])
 
 # Define country-specific holidays
@@ -22,5 +22,5 @@ df["holiday_name"] = df["date"].apply(lambda x: country_holidays.get(x) if x in 
 df["days_since_last_holiday"] = df["date"].apply(lambda x: min([(x - h).days for h in country_holidays if h < x] or [30]))
 """
 
-# Print first few rows
 print(df)
+df.to_csv("holidayData.csv")
