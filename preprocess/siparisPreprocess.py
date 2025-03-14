@@ -1,8 +1,9 @@
 # Load the data from Sheet1 of the orders file
+import os
 import pandas as pd
-
-orders_df = pd.read_excel("../mmkBelgeler/KU003 Siparişler.xlsx", sheet_name="Sheet1", header=1)
-spec_groups_df = pd.read_excel("../mmkBelgeler/specGroups.xlsx")
+print(os.getcwd())
+orders_df = pd.read_excel("mmkBelgeler/KU003 Siparişler 012018.xlsx", sheet_name="Sheet1", header=0)
+spec_groups_df = pd.read_excel("mmkBelgeler/specGroupsTam800.xlsx")
 
 # Convert "Teslimat tarihi" to datetime format
 orders_df["Teslimat tarihi"] = pd.to_datetime(orders_df["Teslimat tarihi"], errors='coerce')
@@ -19,5 +20,5 @@ merged_df["SpecGroupId"] = merged_df["SpecGroupId"].fillna(0)
 result_df = merged_df.groupby(["Month", "SpecGroupId"])["Sipariş Mik. (TON)"].sum().reset_index()
 
 # Save to a new Excel file without renaming columns
-output_orders_file = "../mmkBelgeler/preprocessedDemand.xlsx"
+output_orders_file = "mmkBelgeler/preprocessedDemand.xlsx"
 result_df.to_excel(output_orders_file, index=False)
