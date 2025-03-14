@@ -14,14 +14,6 @@ print(df.head())
 
 
 
-file_path = "/Users/ceylin/Desktop/indr491/indr491/mmkBelgeler/KU003 Siparişler.xlsx"
-df = pd.read_excel(file_path, header=1)
-sarimax_df = df[["Teslimat tarihi", "Açık Mik.(TON)"]]
-
-
-
-
-
 # Plot the data
 df.plot(title="Time Series Data", figsize=(10, 5))
 plt.show()
