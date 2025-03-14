@@ -2,8 +2,20 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # CSV dosyasını yükleme
-file_path = "/Users/ceylin/Desktop/indr491/indr491/mmkBelgeler/KU003 Siparişler.xlsx"
-df = pd.read_excel(file_path, header=1)  # 2. satırı sütun isimleri olarak al
+file_path = "/Users/ceylin/Desktop/indr491/indr491/mmkBelgeler/KU003 Siparişler 012018.csv"
+
+# Try different encodings if needed: 'latin1', 'ISO-8859-1', 'utf-8'
+df = pd.read_csv(file_path, encoding="ISO-8859-1", delimiter=";")
+df.columns = [
+    "Satış belgesi", "Kalem", "Üretim yeri", "Müşteri malzeme numarası",
+    "Satış belgesi türü", "Malzeme", "Malzeme Tanımı", "Plan Hammaddesi",
+    "PlnHmdde Gnşlk", "Sipariş Mik. (TON)", "Sevk Edilen Mik. (TON)",
+    "Açık Mik. (TON)", "Tedariksiz Mamul", "Yaratma tarihi", "Teslimat tarihi",
+    "Planlanan Termin Tarihi", "Öncelik Tanımı", "31 HR", "31 PHR", "31 CRF",
+    "31 GCR", "31 GHR", "31 PPG", "41 HR", "41 PHR", "41 CRF", "41 GCR",
+    "41 GHR", "41 PPG", "Ticari kalite", "Sektör Tanımı", "Baz Fiyat",
+    "Nihai Fiyat", "Siparişi Veren", "Müşteri grubu 2", "Max Tonaj", "Min Tonaj"
+]
 print(df.columns.tolist())  # Sütun isimlerini liste olarak yazdır
 print(df.head()) 
 
