@@ -28,6 +28,7 @@ print(len(sum_df))
 sum_df = sum_df[sum_df["Son 3 yıl Sipariş Mik. (TON) Toplam"] > 0]
 print(len(sum_df))
 specDF = mergedDF[mergedDF["SpecGroupId"].isin(sum_df["SpecGroupId"])]
+
 specDF['SpecGroupId'] = specDF.groupby(['Kalinlik', 'Genislik_Grouped', 'Grade']).ngroup() + 1
 
 
