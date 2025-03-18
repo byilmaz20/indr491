@@ -72,18 +72,18 @@ def getForecastData(siparisAltLimit = 0, lastXyear = 8, groupByGrade = False, fi
         """
     
     return resultDF
-
+"""
 start = datetime.datetime.now()
-#finalOrdersDF = getConcatOrdersDF()
+finalOrdersDF = getConcatOrdersDF()
 
 now = datetime.datetime.now()
 print(now - start)
 start = now
-"""
+
 siparisBySpecDF = getSiparisBySpec(3, finalOrdersDF)
 siparisBySpecFile = "preprocessedBelgeler/preprocessedDemandBySpecTamSon3.xlsx"
 siparisBySpecDF.to_excel(siparisBySpecFile, index=False)
-"""
+
 specGroups0DF = getSpecGroups(0, 3)
 specGroups0File = "preprocessedBelgeler/specGroupsTam_last3_altLimit0.xlsx"
 specGroups0DF.to_excel(specGroups0File, index=False)
@@ -91,7 +91,7 @@ specGroups0DF.to_excel(specGroups0File, index=False)
 specGroups100DF = getSpecGroups(100, 3)
 specGroups100File = "preprocessedBelgeler/specGroupsTam_last3_altLimit100.xlsx"
 specGroups100DF.to_excel(specGroups100File, index=False)
-"""
+
 forecastData0DF = getForecastData(0, 3)
 forecastData0File = "preprocessedBelgeler/forecastData_altLimit0_son3_byGrup.xlsx"
 forecastData0DF.to_excel(forecastData0File, index=False)
