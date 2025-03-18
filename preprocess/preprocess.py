@@ -1,13 +1,12 @@
 import os
 import pandas as pd
 import datetime
+import itertools
 
 def getSpecDF():
     specDF = pd.read_csv("mmkBelgeler/KU002 Mamul SPEC Bilgileri - Tam.csv", encoding="ISO-8859-1", delimiter=";", dtype={"LevhaBoyu": str})
     specDF["Genislik"] = specDF["Genislik"].astype(str).str.replace(",", ".").astype(float)
     specDF["LevhaBoyu"] = specDF["Genislik"].astype(str).str.replace(",", ".").astype(float)
-
-
     return specDF
 
 def getConcatOrdersDF():
@@ -18,8 +17,7 @@ def getConcatOrdersDF():
         finalOrdersDF = pd.concat([finalOrdersDF, orders_df])
     return finalOrdersDF
 
-def getSiparisBySpec(lastXyear = 8):
-    finalOrdersDF = getConcatOrdersDF()
+def getSiparisBySpec(lastXyear = 8, finalOrdersDF = getConcatOrdersDF()):
     finalOrdersDF = finalOrdersDF[finalOrdersDF["Teslimat tarihi"].dt.year >= 2025 - lastXyear]
     resultDF = finalOrdersDF.groupby(["Müşteri malzeme numarası"])["Sipariş Mik. (TON)"].sum().reset_index()
     resultDF.rename(columns={"Müşteri malzeme numarası": "SPEC", "Sipariş Mik. (TON)": f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"}, inplace=True)
@@ -38,37 +36,54 @@ def getSpecGroups(siparisAltLimit = 0, lastXyear = 8):
     specDF = specDF.copy()
     specDF['SpecGroupId'] = specDF.groupby(['Kalinlik', 'Genislik_Grouped', 'Grade']).ngroup() + 1
     specDF = specDF[["SPEC", "SpecGroupId", 'Kalinlik', 'Genislik_Grouped', 'Grade']]
+    specDF = specDF.sort_values(by='SpecGroupId')
     return specDF
 
-def getForecastData(siparisAltLimit = 0, lastXyear = 8, groupByGrade = False):
+def getForecastData(siparisAltLimit = 0, lastXyear = 8, groupByGrade = False, finalOrdersDF = getConcatOrdersDF()):
     specGroupsDF = getSpecGroups(siparisAltLimit, lastXyear) 
-    finalOrdersDF = getConcatOrdersDF()
+
+    finalOrdersDF["Teslimat tarihi"] = pd.to_datetime(finalOrdersDF["Teslimat tarihi"], errors="coerce")
     finalOrdersDF["Month"] = finalOrdersDF["Teslimat tarihi"].dt.strftime("%m.%Y")
+
     mergedDF = finalOrdersDF.merge(specGroupsDF, left_on="Müşteri malzeme numarası", right_on="SPEC", how="left")
     mergedDF["SpecGroupId"] = mergedDF["SpecGroupId"].fillna(0)
 
+    """mergedDF["Month"] = pd.to_datetime(mergedDF["Month"], format="%m.%Y")
+    minMonth = mergedDF["Month"].min()
+    maxMonth = mergedDF["Month"].max()
+    months = pd.date_range(start=minMonth, end=maxMonth, freq="MS").strftime("%m.%Y")"""
+
+
     if not groupByGrade:
         resultDF = mergedDF.groupby(["Month", "SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].sum().reset_index()
-    if groupByGrade:
-        resultDF = resultDF.groupby(["Month", "Grade"])["Sipariş Mik. (TON)"].sum().reset_index()
+        """
+        unique_spec_groups = resultDF["SpecGroupId"].unique()
+        full_index = pd.MultiIndex.from_product([months, unique_spec_groups], names=["Month", "SpecGroupId"])
+        df_full = resultDF.set_index(["Month", "SpecGroupId"]).reindex(full_index, fill_value=0).reset_index()
+        """
 
-    #if siparis doesn't exist for a month, it should be 0
-    resultDF["Month"] = pd.to_datetime(resultDF["Month"], format="%m.%Y")
-    startingMonth = resultDF["Month"].min()
-    endingMonth = resultDF["Month"].max()
-    allMonths = pd.date_range(start=startingMonth, end=endingMonth, freq='MS').strftime("%m.%Y")
 
-    allMonthsDF = pd.DataFrame(allMonths, columns=["Month"])
-    resultDF = allMonthsDF.merge(resultDF, on="Month", how="left")
-    resultDF["Sipariş Mik. (TON)"] = resultDF["Sipariş Mik. (TON)"].fillna(0)
+    else:
+        resultDF = mergedDF.groupby(["Month", "Grade"])["Sipariş Mik. (TON)"].sum().reset_index()
+        """
+        unique_grades = resultDF["Grade"].unique()
+        full_index = pd.MultiIndex.from_product([months, unique_grades], names=["Month", "Grade"])
+        df_full = resultDF.set_index(["Month", "Grade"]).reindex(full_index, fill_value=0).reset_index()
+        """
+    
     return resultDF
 
+start = datetime.datetime.now()
+#finalOrdersDF = getConcatOrdersDF()
 
-
-"""siparisBySpecDF = getSiparisBySpec(3)
+now = datetime.datetime.now()
+print(now - start)
+start = now
+"""
+siparisBySpecDF = getSiparisBySpec(3, finalOrdersDF)
 siparisBySpecFile = "preprocessedBelgeler/preprocessedDemandBySpecTamSon3.xlsx"
 siparisBySpecDF.to_excel(siparisBySpecFile, index=False)
-
+"""
 specGroups0DF = getSpecGroups(0, 3)
 specGroups0File = "preprocessedBelgeler/specGroupsTam_last3_altLimit0.xlsx"
 specGroups0DF.to_excel(specGroups0File, index=False)
@@ -76,15 +91,26 @@ specGroups0DF.to_excel(specGroups0File, index=False)
 specGroups100DF = getSpecGroups(100, 3)
 specGroups100File = "preprocessedBelgeler/specGroupsTam_last3_altLimit100.xlsx"
 specGroups100DF.to_excel(specGroups100File, index=False)
-
+"""
 forecastData0DF = getForecastData(0, 3)
 forecastData0File = "preprocessedBelgeler/forecastData_altLimit0_son3_byGrup.xlsx"
 forecastData0DF.to_excel(forecastData0File, index=False)
-"""
-forecastData100DF = getForecastData(100, 3)
+
+now = datetime.datetime.now()
+print(now - start)
+start = now
+forecastData100DF = getForecastData(100, 3, False, finalOrdersDF)
 forecastData100File = "preprocessedBelgeler/forecastData_altLimit100_son3_byGrup.xlsx"
 forecastData100DF.to_excel(forecastData100File, index=False)
 
-forecastData100_3_gradeDF = getForecastData(100, 3, True)
+now = datetime.datetime.now()
+print(now - start)
+start = now
+
+forecastData100_3_gradeDF = getForecastData(100, 3, True, finalOrdersDF)
 forecastData100_3_gradeFile = "preprocessedBelgeler/forecastData_altLimit100_son3_byGrade.xlsx"
 forecastData100_3_gradeDF.to_excel(forecastData100_3_gradeFile, index=False)
+
+now = datetime.datetime.now()
+print(now - start)
+start = now"""
