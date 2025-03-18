@@ -33,7 +33,7 @@ for grade in unique_grades:
 
     plt.figure(figsize=(12, 6))
     spec_group_data = grade_data.sort_values(by="YearMonth")  # Tarihe göre sıralama
-    plot.title(f'Percentage Distribution within {grade}')
+    plt.title(f'Percentage Distribution within {grade}')
     
     plt.plot(spec_group_data['YearMonth'], spec_group_data['Percentage'], marker='o', linestyle='-')
     plt.xlabel('Year-Month')

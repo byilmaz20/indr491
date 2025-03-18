@@ -3,12 +3,28 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
-# Generate a sample time series dataset
-np.random.seed(42)
-dates = pd.date_range(start="2020-01-01", periods=100, freq="M")
-data = 10 + np.sin(np.linspace(0, 20, 100)) + np.random.normal(0, 0.5, 100)  # Seasonal pattern + noise
-df = pd.DataFrame({"Date": dates, "Value": data})
+path = "/Users/ceylin/Desktop/indr491/indr491/preprocessedBelgeler/forecastData_altLimit100_son3_byGrade.xlsx"
+df = pd.read_excel(path)
+
+mask = df["Grade"] == 'DD11'  
+df = df[mask]  # Seçilen verileri filtrele
+
+# Yıl ve ay verisini ayırarak düzenle
+df["Year"] = df["Month"].astype(str).str.split(".").str[1]  # Yıl bilgisini al
+df["Month"] = df["Month"].astype(str).str.split(".").str[0].str.zfill(2)  # Ay bilgisini al ve iki haneli yap
+
+# Eğer Year sütunu 3 haneli ise, başına "0" ekleyerek düzelt (Örneğin: "202" → "2020")
+df.loc[df["Year"].str.len() == 3, "Year"] = df["Year"] + "0"
+
+# Yeni "YearMonth" sütununu oluştur
+df["YearMonth"] = df["Year"] + "-" + df["Month"]
+
+# Datetime çevirimi (artık hata almayacağız)
+df["YearMonth"] = pd.to_datetime(df["YearMonth"], format="%Y-%m")
+
+df = pd.DataFrame({"Date": df["YearMonth"], "Value": df["Sipariş Mik. (TON)"]})
 df.set_index("Date", inplace=True)
+df = df.sort_values(by="Date") 
 
 print(df.head())
 
