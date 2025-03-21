@@ -1,0 +1,87 @@
+import pandas as pd
+import numpy as np
+from xgboost import XGBRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import mean_absolute_error
+
+# === Load the Data ===
+df = pd.read_excel("/Users/samet/INDR491CodeBase/indr491-1/preprocessedBelgeler/forecastData_altLimit100_son3_byGrup.xlsx")
+
+# === Fix Month Format ===
+# Extract month/year from float (e.g. 1.2018)
+month_floats = df["Month"].astype(float)
+df["month"] = month_floats.astype(int)
+df["year"] = ((month_floats - df["month"]) * 10000).round().astype(int)
+df["Month"] = pd.to_datetime(dict(year=df["year"], month=df["month"], day=1), errors='coerce')
+
+# Drop rows with invalid dates
+df = df.dropna(subset=["Month"])
+
+# === Sort acc to date ===
+df = df.sort_values(by=["SpecGroupId", "Grade", "Month"]).reset_index(drop=True)
+
+# === Lag Features === # lag_1: demand of previous month, lag_2: demand of 2 months prior
+df["lag_1"] = df.groupby(["SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].shift(1)
+df["lag_2"] = df.groupby(["SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].shift(2)
+
+# === Rolling Mean Feature === # 3-month MA demand
+df["rolling_mean_3"] = (
+    df.groupby(["SpecGroupId", "Grade"])["Sipariş Mik. (TON)"]
+    .transform(lambda x: x.shift(1).rolling(window=3).mean())
+)
+
+# === Drop NA Rows After Lag/Rolling ===
+df_model = df.dropna().copy()
+
+# === Encode Categorical Grade ===
+le = LabelEncoder()
+df_model["Grade_encoded"] = le.fit_transform(df_model["Grade"])
+
+# === Define Features and Target ===
+features = ["SpecGroupId", "Grade_encoded", "month", "year", "lag_1", "lag_2", "rolling_mean_3"]
+target = "Sipariş Mik. (TON)"
+
+X = df_model[features]
+y = df_model[target]
+
+# Filter training data to only include meaningful sales
+filtered_df = df_model[df_model["Sipariş Mik. (TON)"] >= 10]
+
+# === Train-Test Split ===
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
+
+# === Train XGBoost Model ===
+model = XGBRegressor(
+    objective="reg:squarederror",
+    n_estimators=100,
+    learning_rate=0.1,
+    max_depth=6,
+    subsample=0.8,
+    colsample_bytree=0.8,
+    random_state=42
+)
+
+model.fit(X_train, y_train)
+
+# === Evaluate ===
+y_pred = model.predict(X_test)
+mae = mean_absolute_error(y_test, y_pred)
+print(f"MAE: {mae:.2f}")
+
+# Mean Absolute Percentage Error (as a function)
+def mean_absolute_percentage_error(y_true, y_pred):
+    y_true, y_pred = np.array(y_true), np.array(y_pred)
+    nonzero = y_true != 0
+    return np.mean(np.abs((y_true[nonzero] - y_pred[nonzero]) / y_true[nonzero])) * 100
+
+mape = mean_absolute_percentage_error(y_test, y_pred)
+print(f"MAPE: {mape:.2f}% average percentage error")
+
+print("Minimum actual value in y_test:", y_test.min())
+print("Any zero actuals?", (y_test == 0).any())
+print("How many actuals < 10:", (y_test < 10).sum())
+
+# === (Optional) Save Model ===
+# import joblib
+# joblib.dump(model, "xgboost_model.pkl")
