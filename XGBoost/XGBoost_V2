@@ -1,57 +1,71 @@
 import pandas as pd
 import numpy as np
 from xgboost import XGBRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import mean_absolute_error
+import matplotlib.pyplot as plt
+import random
 
-# === Load the Data ===
-df = pd.read_excel("/Users/samet/INDR491CodeBase/indr491-1/preprocessedBelgeler/forecastData_altLimit100_son3_byGrup.xlsx")
-
-# === Fix Month Format ===
-# Extract month/year from float (e.g. 1.2018)
-month_floats = df["Month"].astype(float)
-df["month"] = month_floats.astype(int)
-df["year"] = ((month_floats - df["month"]) * 10000).round().astype(int)
-df["Month"] = pd.to_datetime(dict(year=df["year"], month=df["month"], day=1), errors='coerce')
-
-# Drop rows with invalid dates
+# === Load and clean data ===
+df = pd.read_excel("/Users/samet/INDR491CodeBase/indr491-1/preprocessedBelgeler/zero_filled_forecastData_altLimit100_son3_byGrup.xlsx.xlsx")
+df["Sipariş Mik. (TON)"] = (
+    df["Sipariş Mik. (TON)"]
+    .astype(str)
+    .str.replace(",", ".", regex=False)
+    .astype(float)
+)
+df["Month"] = pd.to_datetime(df["Month"], errors='coerce')
+df["month"] = df["Month"].dt.month
+df["year"] = df["Month"].dt.year
 df = df.dropna(subset=["Month"])
 
-# === Sort acc to date ===
-df = df.sort_values(by=["SpecGroupId", "Grade", "Month"]).reset_index(drop=True)
+# === Sort by time and group ===
+df = df.sort_values(by=["SpecGroupId", "Month"]).reset_index(drop=True)
 
-# === Lag Features === # lag_1: demand of previous month, lag_2: demand of 2 months prior
-df["lag_1"] = df.groupby(["SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].shift(1)
-df["lag_2"] = df.groupby(["SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].shift(2)
+# === Feature Engineering (no Grade used) ===
+df["lag_1"] = df.groupby("SpecGroupId")["Sipariş Mik. (TON)"].shift(1)
+df["lag_2"] = df.groupby("SpecGroupId")["Sipariş Mik. (TON)"].shift(2)
+df["lag_3"] = df.groupby("SpecGroupId")["Sipariş Mik. (TON)"].shift(3)
+df["lag_6"] = df.groupby("SpecGroupId")["Sipariş Mik. (TON)"].shift(6)
+df["prev_year_same_month"] = df.groupby("SpecGroupId")["Sipariş Mik. (TON)"].shift(12)
 
-# === Rolling Mean Feature === # 3-month MA demand
-df["rolling_mean_3"] = (
-    df.groupby(["SpecGroupId", "Grade"])["Sipariş Mik. (TON)"]
-    .transform(lambda x: x.shift(1).rolling(window=3).mean())
-)
+df["rolling_mean_3"] = df.groupby("SpecGroupId")["Sipariş Mik. (TON)"].transform(lambda x: x.shift(1).rolling(3).mean())
+df["rolling_mean_6"] = df.groupby("SpecGroupId")["Sipariş Mik. (TON)"].transform(lambda x: x.shift(1).rolling(6).mean())
+df["rolling_std_3"] = df.groupby("SpecGroupId")["Sipariş Mik. (TON)"].transform(lambda x: x.shift(1).rolling(3).std())
 
-# === Drop NA Rows After Lag/Rolling ===
+df["quarter"] = df["Month"].dt.quarter
+df["is_start_of_year"] = (df["Month"].dt.month == 1).astype(int)
+
 df_model = df.dropna().copy()
 
-# === Encode Categorical Grade ===
-le = LabelEncoder()
-df_model["Grade_encoded"] = le.fit_transform(df_model["Grade"])
-
-# === Define Features and Target ===
-features = ["SpecGroupId", "Grade_encoded", "month", "year", "lag_1", "lag_2", "rolling_mean_3"]
+# === Define Features ===
+features = [
+    "SpecGroupId", "month", "year", "quarter", "is_start_of_year",
+    "lag_1", "lag_2", "lag_3", "lag_6",
+    "rolling_mean_3", "rolling_mean_6", "rolling_std_3", "prev_year_same_month"
+]
 target = "Sipariş Mik. (TON)"
 
-X = df_model[features]
-y = df_model[target]
+# === Split train/test per SpecGroupId (12 months as test) ===
+train_rows = []
+test_rows = []
 
-# Filter training data to only include meaningful sales
-filtered_df = df_model[df_model["Sipariş Mik. (TON)"] >= 10]
+for group_id, group_df in df_model.groupby("SpecGroupId"):
+    group_df = group_df.sort_values("Month")
+    if len(group_df) < 24:
+        continue  # skip if not enough data
+    split_point = group_df["Month"].unique()[-12]  # last 12 months as test
+    train_rows.append(group_df[group_df["Month"] < split_point])
+    test_rows.append(group_df[group_df["Month"] >= split_point])
 
-# === Train-Test Split ===
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
+train_df = pd.concat(train_rows)
+test_df = pd.concat(test_rows)
 
-# === Train XGBoost Model ===
+X_train = train_df[features]
+y_train = train_df[target]
+X_test = test_df[features]
+y_test = test_df[target]
+
+# === Train Model ===
 model = XGBRegressor(
     objective="reg:squarederror",
     n_estimators=100,
@@ -61,7 +75,6 @@ model = XGBRegressor(
     colsample_bytree=0.8,
     random_state=42
 )
-
 model.fit(X_train, y_train)
 
 # === Evaluate ===
@@ -69,7 +82,6 @@ y_pred = model.predict(X_test)
 mae = mean_absolute_error(y_test, y_pred)
 print(f"MAE: {mae:.2f}")
 
-# Mean Absolute Percentage Error (as a function)
 def mean_absolute_percentage_error(y_true, y_pred):
     y_true, y_pred = np.array(y_true), np.array(y_pred)
     nonzero = y_true != 0
@@ -78,10 +90,35 @@ def mean_absolute_percentage_error(y_true, y_pred):
 mape = mean_absolute_percentage_error(y_test, y_pred)
 print(f"MAPE: {mape:.2f}% average percentage error")
 
-print("Minimum actual value in y_test:", y_test.min())
-print("Any zero actuals?", (y_test == 0).any())
-print("How many actuals < 10:", (y_test < 10).sum())
+# === Plot: Top 6 highest demand groups ===
+top_ids = df_model.groupby("SpecGroupId")[target].sum().sort_values(ascending=False).head(20).index
+top_test_ids = list(set(top_ids) & set(test_df["SpecGroupId"].unique()))
+sample_ids = random.sample(top_test_ids, k=min(6, len(top_test_ids)))
 
-# === (Optional) Save Model ===
-# import joblib
-# joblib.dump(model, "xgboost_model.pkl")
+fig, axes = plt.subplots(2, 3, figsize=(18, 8))
+axes = axes.flatten()
+
+test_df = test_df.copy()
+test_df["y_pred"] = y_pred
+
+for i, sg_id in enumerate(sample_ids):
+    ax = axes[i]
+    full = df_model[df_model["SpecGroupId"] == sg_id]
+    train_grp = train_df[train_df["SpecGroupId"] == sg_id]
+    test_grp = test_df[test_df["SpecGroupId"] == sg_id]
+
+    ax.plot(train_grp["Month"], train_grp[target], label="Train Actual", marker="o", color="blue")
+    ax.plot(test_grp["Month"], test_grp[target], label="Test Actual", marker="o", color="green")
+    ax.plot(test_grp["Month"], test_grp["y_pred"], label="Forecast", linestyle="--", marker="x", color="orange")
+
+    if not test_grp.empty:
+        ax.axvline(test_grp["Month"].min(), color="red", linestyle="dotted", label="Train/Test Split")
+
+    ax.set_title(f"SpecGroupId: {sg_id}")
+    ax.set_xlabel("Month")
+    ax.set_ylabel("TON")
+    ax.grid(True)
+
+axes[0].legend()
+plt.tight_layout()
+plt.show()
