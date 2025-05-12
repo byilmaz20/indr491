@@ -3,6 +3,7 @@ import numpy as np
 from xgboost import XGBRegressor
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sklearn.metrics import r2_score
 
 # === Load and clean data ===
 df = pd.read_excel("/Users/samet/INDR491CodeBase/indr491-1/preprocessedBelgeler/zero_filled_forecastData_altLimit100_son3_byGrup.xlsx.xlsx")
@@ -62,9 +63,32 @@ model = XGBRegressor(
 )
 model.fit(X_train, y_train)
 
+
 # === Predict ===
 test_df = test_df.copy()
 test_df["y_pred"] = model.predict(X_test)
+
+# 1. R^2 skorunu hesaplayıp yazdıralım
+r2 = r2_score(y_test, test_df["y_pred"])
+print(f"\nTest set R² score: {r2:.4f}")
+
+# 2. Feature importance’ı alıp, pandas Series olarak sıralayalım
+importances = model.feature_importances_
+feat_imp = pd.Series(importances, index=features).sort_values(ascending=False)
+print("\nFeature Importance (azalan sırada):")
+print(feat_imp)
+
+# 3. Bar chart ile görselleştirme
+plt.figure(figsize=(8, 5))
+feat_imp.plot(kind='bar')
+plt.title("XGBoost Feature Importances\n On Test Set")
+plt.xlabel("Feature")
+plt.ylabel("Gain-based Feature Importance")
+plt.grid(True)
+plt.tight_layout()
+
+# Eğer Jupyter/Notebook değil, pencerede görmek için:
+plt.show()
 
 # === Helper Metrics ===
 def mean_absolute_percentage_error(y_true, y_pred):
