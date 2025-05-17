@@ -61,6 +61,10 @@ def getSpecGroups(planlanan, siparisAltLimit = 100, lastXyear = 8):
     cleanSpecDF = specDF[specDF["SpecGroupId"].isin(filteredGroupIds)].copy()
     cleanSpecDF['SpecGroupId'] = cleanSpecDF.groupby(['Kalinlik', 'Genislik_Grouped', 'Grade']).ngroup() + 1
     specDF = cleanSpecDF[["SPEC", "SpecGroupId", "Kalinlik", "Genislik", "Genislik_Grouped", "Grade"]].sort_values("SpecGroupId")
+    gradeGroupsDF = pd.read_excel("mmkBelgeler/KU015 Grade Grupları.xlsx", index_col=0)
+    grade_map = gradeGroupsDF["Grup"].to_dict()
+    #print(grade_map)
+    specDF["GradeGroup"] = specDF["Grade"].apply(lambda g: grade_map.get(g, g))    
     return specDF
 
 
@@ -73,13 +77,8 @@ def getForecastData(planlanan, siparisAltLimit = 0, lastXyear = 8, finalOrdersDF
     mergedDF = finalOrdersDF.merge(specGroupsDF, left_on="Müşteri malzeme numarası", right_on="SPEC", how="left")
     mergedDF["SpecGroupId"] = mergedDF["SpecGroupId"].fillna(0)
 
-    gradeGroupsDF = pd.read_excel("mmkBelgeler/KU015 Grade Grupları.xlsx")
-    #print(gradeGroupsDF)
     resultDF = mergedDF.groupby(["Month", "SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].sum().reset_index()
-    gradeGroupsDF = pd.read_excel("mmkBelgeler/KU015 Grade Grupları.xlsx", index_col=0)
-    grade_map = gradeGroupsDF["Grup"].to_dict()
-    #print(grade_map)
-    resultDF["GradeGroup"] = resultDF["Grade"].apply(lambda g: grade_map.get(g, g))
+    
 
     #Zero filling
     resultDF["Month"] = pd.to_datetime(resultDF["Month"], format="%m.%Y")
@@ -95,6 +94,10 @@ def getForecastData(planlanan, siparisAltLimit = 0, lastXyear = 8, finalOrdersDF
             new_rows.append({"SpecGroupId": uid, "Month": month,"Grade": grade ,"Sipariş Mik. (TON)": 0})  
 
     resultDF = pd.concat([resultDF, pd.DataFrame(new_rows)], ignore_index=True)
+    gradeGroupsDF = pd.read_excel("mmkBelgeler/KU015 Grade Grupları.xlsx", index_col=0)
+    grade_map = gradeGroupsDF["Grup"].to_dict()
+    #print(grade_map)
+    resultDF["GradeGroup"] = resultDF["Grade"].apply(lambda g: grade_map.get(g, g))
     
     return resultDF
 
@@ -113,7 +116,6 @@ def getPlanlanan(finalOrdersDF):
 
 
 finalOrdersDF = getConcatOrdersDF()
-
 
 siparisBySpecDF = getSiparisBySpec(3, finalOrdersDF)
 siparisBySpecFile = "preprocessedBelgeler/NewpreprocessedDemandBySpecTamSon3.xlsx"
