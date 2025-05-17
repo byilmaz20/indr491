@@ -18,10 +18,10 @@ kesmePayiDF["HR Max Kalınlık"] = pd.to_numeric(kesmePayiDF["HR Max Kalınlık"
 
 ezmeTablosuDF = pd.read_excel("mmkBelgeler/KU009 CRM ezme tablosu.xlsx")
 
-
-
 setI = set(hammaddeDF.index.unique())
 setJ = set(specGroupsDF.index.unique())
+
+H_i = {i:hammaddeDF.loc[i, "Stok Kg"] for i in setI}
 
 gecmisEslemelerDF = gecmisEslemelerDF[gecmisEslemelerDF["Malzeme"].isin(setI) & gecmisEslemelerDF["SpecGroupId"].isin(setJ)]
 
@@ -104,12 +104,13 @@ for i in setI:
                     #print(f"✔ Match Found for i={i} and j={j}")
                     
             
-"""
+
 for row in gecmisEslemelerDF.iterrows():
     print(row)
     i = row["Malzeme"]
     j = row["SpecGroupId"]
     if i in setI and j in setJ:
         print("here")
-        setIJ.add((i,j))"""
+        setIJ.add((i,j))
 
+print(setIJ)
