@@ -16,12 +16,12 @@ def getConcatOrdersDF():
     finalOrdersDF = pd.DataFrame()
     for file in os.listdir("mmkBelgeler/siparisler"):
         orders_df = pd.read_excel(os.path.join("mmkBelgeler/siparisler",file), header=0, engine='openpyxl')
-        orders_df["Teslimat tarihi"] = pd.to_datetime(orders_df["Teslimat tarihi"], errors='coerce')
+        orders_df["Yaratma tarihi"] = pd.to_datetime(orders_df["Yaratma tarihi"], errors='coerce')
         finalOrdersDF = pd.concat([finalOrdersDF, orders_df])
     return finalOrdersDF
 
 def getSiparisBySpec(lastXyear = 3, finalOrdersDF = getConcatOrdersDF()):
-    finalOrdersDF = finalOrdersDF[finalOrdersDF["Teslimat tarihi"].dt.year >= 2025 - lastXyear]
+    finalOrdersDF = finalOrdersDF[finalOrdersDF["Yaratma tarihi"].dt.year >= 2025 - lastXyear]
     resultDF = finalOrdersDF.groupby(["Müşteri malzeme numarası"])["Sipariş Mik. (TON)"].sum().reset_index()
     resultDF.rename(columns={"Müşteri malzeme numarası": "SPEC", "Sipariş Mik. (TON)": f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"}, inplace=True)
     #add genislik grade kalınlık from specDF
@@ -64,24 +64,21 @@ def getSpecGroups(planlanan, siparisAltLimit = 100, lastXyear = 8):
     return specDF
 
 
-def getForecastData(planlanana, siparisAltLimit = 0, lastXyear = 8, groupByGrade = False, finalOrdersDF = getConcatOrdersDF()):
+def getForecastData(planlanan, siparisAltLimit = 0, lastXyear = 8, finalOrdersDF = getConcatOrdersDF()):
     specGroupsDF = getSpecGroups(planlanan, siparisAltLimit, lastXyear) 
 
-    finalOrdersDF["Teslimat tarihi"] = pd.to_datetime(finalOrdersDF["Teslimat tarihi"], errors="coerce")
-    finalOrdersDF["Month"] = finalOrdersDF["Teslimat tarihi"].dt.strftime("%m.%Y")
+    finalOrdersDF["Yaratma tarihi"] = pd.to_datetime(finalOrdersDF["Yaratma tarihi"], errors="coerce")
+    finalOrdersDF["Month"] = finalOrdersDF["Yaratma tarihi"].dt.strftime("%m.%Y")
 
     mergedDF = finalOrdersDF.merge(specGroupsDF, left_on="Müşteri malzeme numarası", right_on="SPEC", how="left")
     mergedDF["SpecGroupId"] = mergedDF["SpecGroupId"].fillna(0)
 
     gradeGroupsDF = pd.read_excel("mmkBelgeler/KU015 Grade Grupları.xlsx")
-    print(gradeGroupsDF)
-    if not groupByGrade:
-        resultDF = mergedDF.groupby(["Month", "SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].sum().reset_index()
-    else:
-        resultDF = mergedDF.groupby(["Month", "Grade"])["Sipariş Mik. (TON)"].sum().reset_index()
+    #print(gradeGroupsDF)
+    resultDF = mergedDF.groupby(["Month", "SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].sum().reset_index()
     gradeGroupsDF = pd.read_excel("mmkBelgeler/KU015 Grade Grupları.xlsx", index_col=0)
     grade_map = gradeGroupsDF["Grup"].to_dict()
-    print(grade_map)
+    #print(grade_map)
     resultDF["GradeGroup"] = resultDF["Grade"].apply(lambda g: grade_map.get(g, g))
 
     #Zero filling
@@ -115,71 +112,20 @@ def getPlanlanan(finalOrdersDF):
 
 
 
-"""start = datetime.datetime.now()
 finalOrdersDF = getConcatOrdersDF()
 
-now = datetime.datetime.now()
-print(now - start)
-start = now
 
 siparisBySpecDF = getSiparisBySpec(3, finalOrdersDF)
-siparisBySpecFile = "preprocessedBelgeler/preprocessedDemandBySpecTamSon3.xlsx"
+siparisBySpecFile = "preprocessedBelgeler/NewpreprocessedDemandBySpecTamSon3.xlsx"
 siparisBySpecDF.to_excel(siparisBySpecFile, index=False)
 
-specGroups0DF = getSpecGroups(planlanan, 0, 3)
-specGroups0File = "preprocessedBelgeler/specGroupsTam_last3_altLimit0.xlsx"
-specGroups0DF.to_excel(specGroups0File, index=False)
-
-specGroups100DF = getSpecGroups(planlanan, 100, 3)
-specGroups100File = "preprocessedBelgeler/specGroupsTam_last3_altLimit100.xlsx"
-specGroups100DF.to_excel(specGroups100File, index=False)
-
-forecastData0DF = getForecastData(0, 3)
-forecastData0File = "preprocessedBelgeler/forecastData_altLimit0_son3_byGrup.xlsx"
-forecastData0DF.to_excel(forecastData0File, index=False)
-
-now = datetime.datetime.now()
-print(now - start)
-start = now
-forecastData100DF = getForecastData(100, 3, False, finalOrdersDF)
-forecastData100File = "preprocessedBelgeler/forecastData_altLimit100_son3_byGrup.xlsx"
-forecastData100DF.to_excel(forecastData100File, index=False)
-
-now = datetime.datetime.now()
-print(now - start)
-start = now
-
-forecastData100_3_gradeDF = getForecastData(100, 3, True, finalOrdersDF)
-forecastData100_3_gradeFile = "preprocessedBelgeler/forecastData_altLimit100_son3_byGrade.xlsx"
-forecastData100_3_gradeDF.to_excel(forecastData100_3_gradeFile, index=False)
-
-now = datetime.datetime.now()
-print(now - start)
-start = now"""
-
-start = datetime.datetime.now()
-"""finalOrdersDF = getConcatOrdersDF()
-finalOrdersDF.to_excel("preprocessedBelgeler/finalOrdersDF.xlsx", index=False)
-"""
-finalOrdersDF = pd.read_excel("preprocessedBelgeler/finalOrdersDF.xlsx")
-
 planlanan = getPlanlanan(finalOrdersDF)
-print(planlanan.keys())
-print("Planlanan: ", planlanan)
 
-
-specGroups0DF = getSpecGroups(planlanan, 100, 3)
-specGroups0File = "preprocessedBelgeler/NEWspecGroupsTam_last3_altLimit100.xlsx"
-specGroups0DF.to_excel(specGroups0File, index=False)
-
-
-
-"""
 specGroups100DF = getSpecGroups(planlanan, 100, 3)
-specGroups100File = "preprocessedBelgeler/specGroupsTam_last3_altLimit100.xlsx"
+specGroups100File = "preprocessedBelgeler/NEWspecGroupsTam_last3_altLimit100.xlsx"
 specGroups100DF.to_excel(specGroups100File, index=False)
 
-
-forecastData100DF = getForecastData(100, 3, False, finalOrdersDF)
-forecastData100File = "preprocessedBelgeler/forecastData_altLimit100_son3_byGrupNEW.xlsx"
-forecastData100DF.to_excel(forecastData100File, index=False)"""
+forecastData100DF = getForecastData(planlanan, 100, 3, finalOrdersDF)
+forecastData100File = "preprocessedBelgeler/NewforecastData_altLimit100_son3_byGrup.xlsx"
+forecastData100DF.to_excel(forecastData100File, index=False)
+print("done")
