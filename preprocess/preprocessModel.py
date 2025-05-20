@@ -129,6 +129,9 @@ for j in setJ:
     for u in setU:
         dju[(j,u)] = 0
 
+# read excel /Users/ceylin/Desktop/indr491/indr491/results/SARIMAX_forecast.xlsx
+forecast_df = pd.read_excel("results/SARIMAX_forecast.xlsx")
+
 for j in setJ:
     specs = spec_to_group[spec_to_group["SpecGroupId"] == j]["SPEC"].unique()
     orders = orders_df[orders_df["Müşteri malzeme numarası"].isin(specs)]
@@ -136,6 +139,7 @@ for j in setJ:
     normal_orders = orders[orders["Öncelik Tanımı"] == 'Normal öncellikli sipariş kalemi']
     dju[(j, 1)] = high_urgency_orders["Sipariş Mik. (TON)"].sum()
     dju[(j, 2)] = normal_orders["Sipariş Mik. (TON)"].sum()
+    dju[(j, 3)] = forecast_df[forecast_df["SpecGroupId"] == j]["Forecast_TON"].sum()
 
 #dju should be a dataframe
 dju_df = pd.DataFrame(
