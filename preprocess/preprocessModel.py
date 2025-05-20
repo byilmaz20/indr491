@@ -1,6 +1,7 @@
 import pandas as pd
 
 specGroupsDF = pd.read_excel("preprocessedBelgeler/NEWspecGroupsTam_last3_altLimit100.xlsx")
+orders_df = pd.read_excel("preprocessedBelgeler/NewpreprocessedFinalOrders.xlsx")
 
 gecmisEslemelerDF = pd.read_excel("mmkBelgeler/KU004 Sipariş bazında eşlenen HR tarihçesi.xlsx")
 gecmisEslemelerDF = gecmisEslemelerDF.merge(specGroupsDF, left_on="Müşteri malzeme numarası", right_on="SPEC", how="left")
@@ -20,6 +21,7 @@ ezmeTablosuDF = pd.read_excel("mmkBelgeler/KU009 CRM ezme tablosu.xlsx")
 
 setI = set(hammaddeDF.index.unique())
 setJ = set(specGroupsDF.index.unique())
+setU = set([1, 2, 3])
 
 H_i = {i:hammaddeDF.loc[i, "Stok Kg"] for i in setI}
 
@@ -105,12 +107,40 @@ for i in setI:
                     
             
 
-for row in gecmisEslemelerDF.iterrows():
-    print(row)
+# Hata veren kısmı düzelt
+for index, row in gecmisEslemelerDF.iterrows():
     i = row["Malzeme"]
     j = row["SpecGroupId"]
     if i in setI and j in setJ:
-        print("here")
         setIJ.add((i,j))
 
-print(setIJ)
+
+orders_df["Yaratma tarihi"] = pd.to_datetime(orders_df["Yaratma tarihi"], errors="coerce")
+orders_df["Teslimat tarihi"] = pd.to_datetime(orders_df["Teslimat tarihi"], errors="coerce")
+referans_tarih = pd.to_datetime("2025-03-01")
+
+# filter orders by date
+orders_df = orders_df[(referans_tarih >= orders_df["Yaratma tarihi"]) & (orders_df["Teslimat tarihi"] >= referans_tarih)]
+spec_to_group = pd.read_excel("preprocessedBelgeler/NEWspecGroupsTam_last3_altLimit100.xlsx")[["SPEC", "SpecGroupId"]]
+
+# dju is a dataframe first column j second u third dju 
+dju = {}
+for j in setJ:
+    for u in setU:
+        dju[(j,u)] = 0
+
+for j in setJ:
+    specs = spec_to_group[spec_to_group["SpecGroupId"] == j]["SPEC"].unique()
+    orders = orders_df[orders_df["Müşteri malzeme numarası"].isin(specs)]
+    high_urgency_orders = orders[orders["Öncelik Tanımı"] == 'Acil sipariş kalemi']
+    normal_orders = orders[orders["Öncelik Tanımı"] == 'Normal öncellikli sipariş kalemi']
+    dju[(j, 1)] = high_urgency_orders["Sipariş Mik. (TON)"].sum()
+    dju[(j, 2)] = normal_orders["Sipariş Mik. (TON)"].sum()
+
+#dju should be a dataframe
+dju_df = pd.DataFrame(
+    [(j, u, val) for (j, u), val in dju.items()],
+    columns=["SpecGroupId", "Urgency", "Siparis_TON"]
+)
+#
+print("dju_df: ", dju_df.head())

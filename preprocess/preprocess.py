@@ -70,6 +70,7 @@ def getSpecGroups(planlanan, siparisAltLimit = 100, lastXyear = 8):
 
 def getForecastData(planlanan, siparisAltLimit = 0, lastXyear = 8, finalOrdersDF = getConcatOrdersDF()):
     specGroupsDF = getSpecGroups(planlanan, siparisAltLimit, lastXyear) 
+    print("specGroupsDF: ", specGroupsDF.head())
 
     finalOrdersDF["Yaratma tarihi"] = pd.to_datetime(finalOrdersDF["Yaratma tarihi"], errors="coerce")
     finalOrdersDF["Month"] = finalOrdersDF["Yaratma tarihi"].dt.strftime("%m.%Y")
@@ -115,8 +116,11 @@ def getPlanlanan(finalOrdersDF):
 
 
 
-finalOrdersDF = getConcatOrdersDF()
-
+finalOrdersDF = getConcatOrdersDF() # get all orders
+print("finalOrdersDF: ", finalOrdersDF)
+# save to excel
+finalOrdersFile = "preprocessedBelgeler/NewpreprocessedFinalOrders.xlsx"
+finalOrdersDF.to_excel(finalOrdersFile, index=False)
 siparisBySpecDF = getSiparisBySpec(3, finalOrdersDF)
 siparisBySpecFile = "preprocessedBelgeler/NewpreprocessedDemandBySpecTamSon3.xlsx"
 siparisBySpecDF.to_excel(siparisBySpecFile, index=False)
