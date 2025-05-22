@@ -1,0 +1,555 @@
+SpecGroupId: 1 (1000.0x0.3xDX51D+Z) Demand: 0 20.0 153.31057997575633
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 23 (1000.0x0.35xDX51D+Z) Demand: 0 1.0 179.42089670095112
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 43 (1000.0x0.38xDX51D+Z) Demand: 0 195.0 990.0579284121814
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 70 (1000.0x0.4xDX51D+Z) Demand: 0 20.0 222.98536693395423
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 71 (1000.0x0.4xDX51DT+Z) Demand: 30.0 0 100.183838424493
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+SpecGroupId: 79 (1200.0x0.4xDX51D+Z) Demand: 0 20.0 169.36400488501226
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 80 (1200.0x0.4xDX51DT+Z) Demand: 30.0 0 40.59368736993325
+SpecGroupId: 84 (1250.0x0.4xDX51D+Z) Demand: 0 20.0 315.1610697738315
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 93 (1000.0x0.43xDX51DT+Z) Demand: 0 505.0 1731.1764190165466
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+SpecGroupId: 108 (1200.0x0.43xDX51DT+Z) Demand: 0 25.0 344.64197685337183
+SpecGroupId: 112 (1250.0x0.43xDX51DT+Z) Demand: 50.0 18.0 14.458443118093786
+SpecGroupId: 119 (740.0x0.43xDX51D+Z) Demand: 0 8.0 24.692275599865134
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+SpecGroupId: 120 (850.0x0.43xDX51D+Z) Demand: 0 10.0 46.871501339500284
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 137 (1000.0x0.47xDX51D+Z) Demand: 50.0 55.0 491.4935726504152
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 163 (1000.0x0.5xDX51D+Z) Demand: 20.0 340.0 2304.659260579635
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 164 (1000.0x0.5xDX51DT+Z) Demand: 100.0 2809.82 11017.49274308356
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+SpecGroupId: 194 (1200.0x0.5xDX51D+Z) Demand: 0 441.1 2056.989840236652
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+Hammadde: (1220.0x4.0xDD11) Stok: 5.06 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 195 (1200.0x0.5xDX51DT+Z) Demand: 126.02 268.0 1568.9910960375328
+SpecGroupId: 205 (1250.0x0.5xDX51D+Z) Demand: 0 180.0 3559.7870993138386
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 210 (1270.0x0.5xDX51DT+Z) Demand: 0 46.0 0
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+SpecGroupId: 213 (137.0x0.5xDX51D+Z) Demand: 0 45.0 68.44599963082881
+SpecGroupId: 215 (144.0x0.5xDX51D+Z) Demand: 0 46.0 10.94451065525889
+SpecGroupId: 220 (1500.0x0.5xDX51D+Z) Demand: 0 20.0 361.1051386639353
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+SpecGroupId: 224 (330.0x0.5xDX51DT+Z) Demand: 0 5.83 33.656712371147755
+SpecGroupId: 236 (85.0x0.5xDX51D+Z) Demand: 0 3.4 4.237534903263596
+SpecGroupId: 265 (330.0x0.55xDX51DT+Z) Demand: 0 20.0 2.736127663814723
+SpecGroupId: 281 (1200.0x0.58xDX51DT+Z) Demand: 0 20.0 9.514049504686898
+SpecGroupId: 284 (1000.0x0.6xDX51D+Z) Demand: 0 40.0 741.3868437327592
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 285 (1000.0x0.6xDX51DT+Z) Demand: 0 70.0 183.05868887542124
+Hammadde: (1060.0x2.35xDD11) Stok: 18.7 
+SpecGroupId: 294 (1200.0x0.6xDX51D+Z) Demand: 70.0 115.43 1284.25082273745
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 295 (1200.0x0.6xDX51DT+Z) Demand: 0 15.0 383.8140006609625
+SpecGroupId: 298 (1220.0x0.6xDX51DT+Z) Demand: 0 50.0 94.8355949301839
+SpecGroupId: 299 (1250.0x0.6xDX51D+Z) Demand: 20.0 87.0 1240.905748193169
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+Hammadde: (1195.0x1.5xDD13) Stok: 21.0 
+SpecGroupId: 300 (1250.0x0.6xDX51DT+Z) Demand: 0 50.0 20.979033657997675
+SpecGroupId: 305 (1500.0x0.6xDX51D+Z) Demand: 0 20.0 532.8011015785282
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 319 (600.0x0.6xDX51DT+Z) Demand: 0 20.0 10.30009908871857
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+SpecGroupId: 336 (1200.0x0.66xDX51DT+Z) Demand: 30.0 0 42.82404828846054
+SpecGroupId: 344 (1200.0x0.68xDX51DT+Z) Demand: 0 40.0 5.199945961987227
+SpecGroupId: 350 (1000.0x0.7xDX51D+Z) Demand: 20.0 150.0 491.1424437963128
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 351 (1000.0x0.7xDX51DT+Z) Demand: 0 50.0 69.10308227495482
+SpecGroupId: 358 (1200.0x0.7xDX51D+Z) Demand: 20.0 90.0 951.4503436748672
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 359 (1200.0x0.7xDX51DT+Z) Demand: 30.0 50.0 386.01898433879046
+SpecGroupId: 361 (1220.0x0.7xDX51DT+Z) Demand: 0 200.0 171.07582617702585
+SpecGroupId: 362 (1250.0x0.7xDX51D+Z) Demand: 0 112.0 979.4464282409444
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 363 (1250.0x0.7xDX51DT+Z) Demand: 0 100.0 30.894712890027403
+SpecGroupId: 375 (1500.0x0.7xDX51D+Z) Demand: 46.0 40.0 434.28741803123984
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1520.0x1.5xS235JR) Stok: 48.76 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 394 (1000.0x0.8xDX51D+Z) Demand: 40.0 65.0 714.162674041376
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1060.0x2.35xDD11) Stok: 18.7 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 400 (1100.0x0.8xDX51D+Z) Demand: 20.0 0 30.553865263603853
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 402 (1140.0x0.8xS280GD+Z) Demand: 0 132.0 3.857132397106081
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 405 (120.0x0.8xDX51D+Z) Demand: 0 2.8 5.463351599798228
+SpecGroupId: 406 (1200.0x0.8xDX51D+Z) Demand: 90.0 171.59 1022.1432547482393
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 408 (1200.0x0.8xS280GD+Z) Demand: 0 80.0 110.59800288387507
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 410 (1250.0x0.8xDX51D+Z) Demand: 188.0 265.0 1515.943028665812
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 411 (1250.0x0.8xDX51DT+Z) Demand: 0 100.0 8.548407364253984
+SpecGroupId: 419 (1500.0x0.8xDX51D+Z) Demand: 86.0 125.0 2147.9187789136845
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 431 (188.0x0.8xS280GD+Z) Demand: 0 92.0 212.7728525858228
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 443 (1250.0x0.82xDX51D+Z) Demand: 25.0 275.0 0
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 444 (1500.0x0.82xDX51D+Z) Demand: 250.0 0 0
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 453 (1000.0x0.9xDX51D+Z) Demand: 40.0 0 395.5586809558565
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 457 (1200.0x0.9xDX51D+Z) Demand: 40.0 40.0 480.92652926778
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 461 (1250.0x0.9xDX51D+Z) Demand: 60.0 30.0 866.9478127180829
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1070.0x1.8xDD11) Stok: 19.4 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1300.0x1.8xDD11) Stok: 23.94 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 465 (1500.0x0.9xDX51D+Z) Demand: 50.0 43.4 547.7824666494928
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+Hammadde: (1080.0x1.8xS275JR) Stok: 38.86 
+SpecGroupId: 476 (1000.0x1.0xDX51D+Z) Demand: 40.0 225.0 1419.4674332928955
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1060.0x2.35xDD11) Stok: 18.7 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+SpecGroupId: 479 (1000.0x1.0xS350GD+Z) Demand: 99.9 0 3.675631403210921
+Hammadde: (1020.0x3.0xS315MC) Stok: 16.12 
+SpecGroupId: 487 (1140.0x1.0xS280GD+Z) Demand: 0 82.0 2.073208663444519
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+SpecGroupId: 491 (1200.0x1.0xDX51D+Z) Demand: 120.0 369.0 1252.3422427437229
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+SpecGroupId: 495 (1200.0x1.0xS280GD+Z) Demand: 0 50.0 141.77946926433063
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+SpecGroupId: 501 (1250.0x1.0xDX51D+Z) Demand: 233.0 442.07 2147.4650843217305
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+SpecGroupId: 515 (1500.0x1.0xDX51D+Z) Demand: 198.0 248.0 2659.7523346473
+Hammadde: (1400.0x2.0xDD11) Stok: 48.7 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1100.0x2.0xDD11) Stok: 21.1 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1230.0x2.0xDD11) Stok: 21.5 
+Hammadde: (1080.0x2.0xDD11) Stok: 7.7 
+Hammadde: (1140.0x2.0xDD11) Stok: 42.34 
+SpecGroupId: 523 (188.0x1.0xS280GD+Z) Demand: 0 725.0 156.3653141672507
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 526 (240.0x1.0xS280GD+Z) Demand: 0 43.0 92.25991517332787
+SpecGroupId: 546 (1500.0x1.1xDX51D+Z) Demand: 0 20.0 139.5502094507552
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 550 (1200.0x1.15xDX51D+Z) Demand: 0 52.0 45.70660881958861
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 555 (1000.0x1.2xDX51D+Z) Demand: 40.0 325.0 1087.1296653113875
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1060.0x2.35xDD11) Stok: 18.7 
+Hammadde: (1020.0x3.0xS315MC) Stok: 16.12 
+SpecGroupId: 561 (1140.0x1.2xS280GD+Z) Demand: 0 190.0 1.92856619855304
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 564 (1200.0x1.2xDX51D+Z) Demand: 50.0 120.0 1099.2382020219193
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 567 (1200.0x1.2xS280GD+Z) Demand: 0 184.0 166.307951544628
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 571 (1250.0x1.2xDX51D+Z) Demand: 223.0 599.5 1530.1182730540072
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+Hammadde: (1270.0x2.5xS315MC) Stok: 90.5 
+SpecGroupId: 581 (1500.0x1.2xDX51D+Z) Demand: 218.0 299.15999999999997 1412.153236464345
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 587 (188.0x1.2xS280GD+Z) Demand: 0 181.196 244.0771218204418
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 589 (238.0x1.2xS280GD+Z) Demand: 0 40.0 124.58709359211578
+Hammadde: (945.0x2.6xS315MC) Stok: 134.58 
+SpecGroupId: 593 (330.0x1.2xDX51DT+Z) Demand: 0 50.0 0
+SpecGroupId: 607 (1250.0x1.21xDX51D+Z) Demand: 23.0 0 196.7941644581805
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 610 (1500.0x1.21xDX51D+Z) Demand: 214.54 20.0 168.6082038360512
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 629 (580.0x1.3xDX51D+Z) Demand: 100.0 0 52.8427138403533
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+SpecGroupId: 642 (1250.0x1.35xDX51D+Z) Demand: 0 100.0 375.4850796939611
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+SpecGroupId: 644 (1500.0x1.35xDX51D+Z) Demand: 151.0 0 277.5109279631955
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 646 (500.0x1.35xDX51D+Z) Demand: 200.0 0 96.49531511298295
+SpecGroupId: 648 (570.0x1.35xDX51D+Z) Demand: 0 250.0 18.75018037994885
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+SpecGroupId: 654 (1000.0x1.4xDX51D+Z) Demand: 250.0 100.0 533.5873127644588
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+SpecGroupId: 659 (1200.0x1.4xDX51D+Z) Demand: 0 72.0 290.3671164080843
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+SpecGroupId: 660 (1250.0x1.4xDX51D+Z) Demand: 0 70.0 531.489880612587
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+SpecGroupId: 663 (1500.0x1.4xDX51D+Z) Demand: 250.0 0 298.4797312072689
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1270.0x2.5xS235JR) Stok: 47.48 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1160.0x2.5xS235JR) Stok: 87.56 
+SpecGroupId: 667 (1250.0x1.45xDX51D+Z) Demand: 0 100.0 193.89446165285509
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+SpecGroupId: 673 (1000.0x1.5xDX51D+Z) Demand: 120.0 303.0 1935.04784216043
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1020.0x3.0xS315MC) Stok: 16.12 
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+SpecGroupId: 684 (1200.0x1.5xDX51D+Z) Demand: 50.0 220.0 1280.3397253342346
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+SpecGroupId: 690 (1250.0x1.5xDX51D+Z) Demand: 300.0 864.37 3068.276942813649
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+SpecGroupId: 703 (1500.0x1.5xDX51D+Z) Demand: 288.0 698.0 4318.398558123976
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+SpecGroupId: 728 (1250.0x1.6xDX51D+Z) Demand: 0 25.0 125.4719811813174
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+SpecGroupId: 729 (1500.0x1.6xDX51D+Z) Demand: 0 150.0 8.55796124531431
+Hammadde: (1190.0x3.0xDD11) Stok: 99.36 
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+SpecGroupId: 756 (1000.0x1.8xDX51D+Z) Demand: 105.0 0 410.8070884046613
+Hammadde: (1020.0x1.8xDD11) Stok: 5.92 
+SpecGroupId: 770 (1250.0x1.8xDX51D+Z) Demand: 196.0 45.0 1598.6024241091118
+SpecGroupId: 778 (1500.0x1.8xDX51D+Z) Demand: 0 20.0 325.4995976994344
+Hammadde: (1220.0x3.0xS275JR) Stok: 18.94 
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+SpecGroupId: 823 (1000.0x2.0xDX51D+Z) Demand: 50.0 226.75 1940.9720236664969
+Hammadde: (1220.0x4.0xDD11) Stok: 5.06 
+SpecGroupId: 854 (1200.0x2.0xDX51D+Z) Demand: 50.0 245.0 1537.829821545858
+Hammadde: (1220.0x3.5xDD11) Stok: 230.52 
+Hammadde: (1220.0x4.0xDD11) Stok: 5.06 
+SpecGroupId: 868 (1250.0x2.0xDX51D+Z) Demand: 231.0 1015.0 3223.064219933928
+Hammadde: (1220.0x4.0xDD11) Stok: 5.06 
+SpecGroupId: 888 (1500.0x2.0xDX51D+Z) Demand: 80.0 1082.0 5352.44347897777
+Hammadde: (1220.0x4.0xDD11) Stok: 5.06 
+SpecGroupId: 972 (1000.0x2.5xDX51D+Z) Demand: 20.0 0 378.5002601238129
+SpecGroupId: 975 (1010.0x2.5xS350GD+Z) Demand: 68.0 0 27.11929106691156
+SpecGroupId: 987 (1200.0x2.5xDX51D+Z) Demand: 20.0 60.0 576.6099096212116
+SpecGroupId: 999 (1250.0x2.5xDX51D+Z) Demand: 0 116.0 929.0832328522565
+SpecGroupId: 1014 (1500.0x2.5xDX51D+Z) Demand: 75.0 423.0 1298.4864968823663
+SpecGroupId: 1029 (975.0x2.5xS350GD+Z) Demand: 0 48.0 0
+SpecGroupId: 1108 (1000.0x3.0xDX51D+Z) Demand: 50.0 55.0 800.9064893472255
+SpecGroupId: 1120 (1200.0x3.0xDX51D+Z) Demand: 90.0 165.0 784.0565332080465
+SpecGroupId: 1133 (1250.0x3.0xDX51D+Z) Demand: 120.0 213.0 1479.9491194414545
+SpecGroupId: 1149 (1500.0x3.0xDX51D+Z) Demand: 178.0 986.0 3057.3379039592496
+SpecGroupId: 1228 (1000.0x4.0xDX51D+Z) Demand: 0 50.0 187.99382673583725
+SpecGroupId: 1235 (1200.0x4.0xDX51D+Z) Demand: 25.0 58.0 137.1896175787463
+Hammadde: (1220.0x4.0xDD11) Stok: 5.06 
+SpecGroupId: 1241 (1250.0x4.0xDX51D+Z) Demand: 25.0 0 117.28455143057361
