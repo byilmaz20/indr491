@@ -10,6 +10,7 @@ def getSpecDF():
     specDF = pd.read_csv("mmkBelgeler/KU002 Mamul SPEC Bilgileri - Tam.csv", encoding="ISO-8859-1", delimiter=";", dtype={"LevhaBoyu": str})
     specDF["Genislik"] = specDF["Genislik"].astype(str).str.replace(",", ".").astype(float)
     specDF["LevhaBoyu"] = specDF["Genislik"].astype(str).str.replace(",", ".").astype(float)
+    specDF["SPEC"] = specDF["SPEC"].astype(int)
     return specDF
 
 def getConcatOrdersDF():
@@ -18,6 +19,14 @@ def getConcatOrdersDF():
         orders_df = pd.read_excel(os.path.join("mmkBelgeler/siparisler",file), header=0, engine='openpyxl')
         orders_df["Yaratma tarihi"] = pd.to_datetime(orders_df["Yaratma tarihi"], errors='coerce')
         finalOrdersDF = pd.concat([finalOrdersDF, orders_df])
+    print(f"Final Orders DF shape: {finalOrdersDF.shape}")
+    print(finalOrdersDF.head())
+    finalOrdersDF = finalOrdersDF[finalOrdersDF["Müşteri malzeme numarası"].notna()]
+    print(finalOrdersDF.head())
+
+    finalOrdersDF["Müşteri malzeme numarası"] = finalOrdersDF["Müşteri malzeme numarası"].astype(int)
+    print(finalOrdersDF.head())
+
     return finalOrdersDF
 
 def getSiparisBySpec(lastXyear = 3, finalOrdersDF = getConcatOrdersDF()):
@@ -29,7 +38,7 @@ def getSiparisBySpec(lastXyear = 3, finalOrdersDF = getConcatOrdersDF()):
     resultDF = resultDF.merge(specDF, left_on="SPEC", right_on="SPEC", how="left")
     resultDF = resultDF[["SPEC", f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam", "Kalinlik", "Genislik", "Grade"]]
     resultDF = resultDF[resultDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"] > 10]
-
+    resultDF["SPEC"] = resultDF["SPEC"].astype(int)
     return resultDF
 
 def assign_genislik_group(row):
@@ -37,10 +46,8 @@ def assign_genislik_group(row):
     planlanan = row['Planlanan']
 
     if genislik >= 800:
-        #print(f'Matched genislik: {genislik} >= 800')
         return genislik
     elif planlanan >= 800:
-        #print(f'Matched planlanan: {planlanan} >= 800')
         return planlanan
     else:
         # Find the first multiple of genislik that is >= 800
@@ -53,12 +60,10 @@ def assign_genislik_group(row):
 def getSpecGroups(planlanan, siparisAltLimit = 100, lastXyear = 8):
     specDF = getSpecDF()
     specDF["Genislik"] = specDF["Genislik"].astype(str).str.replace(",", ".").astype(float)
-    specDF["SPEC"] = specDF["SPEC"].astype(str)
     #specDF.to_excel("preprocessedBelgeler/DENEMEspecDF.xlsx", index=False)
 
     planlananDF = pd.DataFrame(list(planlanan.items()), columns=["SPEC", "Planlanan"])
     planlananDF["Planlanan"] = planlananDF["Planlanan"].astype(int)
-    planlananDF["SPEC"] = planlananDF["SPEC"].astype(str)
     #planlananDF.to_excel("preprocessedBelgeler/DENEMEplanlananDF.xlsx", index=False)
 
     specDF = specDF.merge(planlananDF, left_on="SPEC", right_on="SPEC", how="left")
@@ -68,36 +73,18 @@ def getSpecGroups(planlanan, siparisAltLimit = 100, lastXyear = 8):
     specDF["Genislik_Grouped"] = specDF.apply(assign_genislik_group, axis=1)
     specDF['SpecGroupId'] = specDF.groupby(['Kalinlik', 'Genislik_Grouped', 'Grade']).ngroup() + 1
     lastXyearSiparisDF = getSiparisBySpec(lastXyear)
-    lastXyearSiparisDF["SPEC"] = lastXyearSiparisDF["SPEC"].astype(float).astype(int).astype(str)
-    print('lastXyearSiparisDF: ', lastXyearSiparisDF.head())
-    lastXyearSiparisDF["SPEC"] = lastXyearSiparisDF["SPEC"].astype(str)
-    print('lastXyearSiparisDF after astype str: ', lastXyearSiparisDF.head())
-    print("specDF herex: ", specDF.head())
     
     mergedDF = specDF.merge(lastXyearSiparisDF, left_on="SPEC", right_on="SPEC", how="left")
     mergedDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"] = mergedDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"].fillna(0)
     sumDF = mergedDF.groupby(["SpecGroupId"])[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"].sum().reset_index()
-    print('sumDF: ', sumDF.head())
-    if (sumDF["Son 3 yıl Sipariş Mik. (TON) Toplam"] != 0).any():
-        print("✅ There are non-zero values in 'Son 3 yıl Sipariş Mik. (TON) Toplam'")
-    else:
-        print("❌ All values in 'Son 3 yıl Sipariş Mik. (TON) Toplam' are zero")
 
     
     sumDF = sumDF[sumDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"] > siparisAltLimit]
-    print('sumDF: ', sumDF.head())
-    print("specDF here4: ", specDF.head())
     filteredGroupIds = sumDF["SpecGroupId"].unique()
-    print("specDF here5: ", specDF.head())
-
     cleanSpecDF = specDF[specDF["SpecGroupId"].isin(filteredGroupIds)].copy()
-    print("specDF here6: ", cleanSpecDF.head())
-
     cleanSpecDF['SpecGroupId'] = cleanSpecDF.groupby(['Kalinlik', 'Genislik_Grouped', 'Grade']).ngroup() + 1
-    print("specDF here7: ", cleanSpecDF.head())
 
     specDF = cleanSpecDF[["SPEC", "SpecGroupId", "Kalinlik", "Genislik", "Genislik_Grouped", "Grade"]].sort_values("SpecGroupId")
-    print("specDF here8: ", specDF.head())
     gradeGroupsDF = pd.read_excel("mmkBelgeler/KU015 Grade Grupları.xlsx", index_col=0)
     grade_map = gradeGroupsDF["Grup"].to_dict()
     #print(grade_map)
@@ -111,21 +98,14 @@ def getForecastData(planlanan, siparisAltLimit = 0, lastXyear = 8, finalOrdersDF
 
 
     specGroupsDF = getSpecGroups(planlanan, siparisAltLimit, lastXyear) 
-
-    print("specGroupsDF: ", specGroupsDF.head())
-
     finalOrdersDF["Yaratma tarihi"] = pd.to_datetime(finalOrdersDF["Yaratma tarihi"], errors="coerce")
     finalOrdersDF["Month"] = finalOrdersDF["Yaratma tarihi"].dt.strftime("%m.%Y")
 
-    finalOrdersDF["Müşteri malzeme numarası"] = finalOrdersDF["Müşteri malzeme numarası"].astype(str).str.rstrip(".0")
-    finalOrdersDF["Müşteri malzeme numarası"] = finalOrdersDF["Müşteri malzeme numarası"].astype(str).str.replace(",", ".")
 
     mergedDF = finalOrdersDF.merge(specGroupsDF, left_on="Müşteri malzeme numarası", right_on="SPEC", how="left")
     mergedDF["SpecGroupId"] = mergedDF["SpecGroupId"].fillna(0)
 
     resultDF = mergedDF.groupby(["Month", "SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].sum().reset_index()
-    print("resultDF: ", resultDF.shape)
-    print(resultDF.head())
     
 
     #Zero filling
@@ -152,7 +132,6 @@ def getForecastData(planlanan, siparisAltLimit = 0, lastXyear = 8, finalOrdersDF
 
 def getPlanlanan(finalOrdersDF):
     filtered_df = finalOrdersDF[["Müşteri malzeme numarası", "PlnHmdde Gnşlk"]].dropna()
-    filtered_df["Müşteri malzeme numarası"] = filtered_df["Müşteri malzeme numarası"].astype(str).str.rstrip(".0")
     filtered_df["PlnHmdde Gnşlk"] = pd.to_numeric(filtered_df["PlnHmdde Gnşlk"], errors="coerce")
     filtered_df = filtered_df[filtered_df["PlnHmdde Gnşlk"] > 0]
     min_valid = filtered_df.groupby("Müşteri malzeme numarası")["PlnHmdde Gnşlk"].min().reset_index()

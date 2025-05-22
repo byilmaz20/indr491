@@ -98,8 +98,9 @@ def preprocessModel():
 
             elif gradeI in dictGrade[gradeJ]:
                 #Kalinlik check
-                #if genislik_i == genislik_j: #TODO!!! buraya KU008 eklenecek
-                if True:
+                if genislik_i == genislik_j + kesmePayi_i[i]:
+                #TODO!!! buraya KU008 eklenecek
+                #if True:
                     matched_rows = ezmeTablosuDF[
                         (ezmeTablosuDF["HR_Grade"] == gradeI) &
                         (ezmeTablosuDF["Mamul_Gns_Min"] <= genislikJ) &
