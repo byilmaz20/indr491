@@ -80,6 +80,7 @@ else:
 
 print(f"Demand Meeting Ratio u = 1: %{demandMeetingRatio_u[0] * 100}, u = 2: %{demandMeetingRatio_u[1] * 100}, u = 3: %{demandMeetingRatio_u[2] * 100}")
 
+print(f"Hammadde kullanım oranı: {sum(x_iju[(i, j, u)] for (i, j) in setIJ for u in setU) / sum(H_i[i] for i in setI)}")
 
 resultDF = pd.DataFrame(columns=["SpecGroupId", "Ürün tanımı", "Hammadde", "Hammadde Tanımı", "Talep (ton)", "Talep Aciliyeti", "Tahsis (ton)"])
 row = 0
@@ -106,6 +107,12 @@ for u in setU:
     ozetDF.at[row, "Tahsis (ton)"] = totalAllocation
     ozetDF.at[row, "Tahsis Oranı"] = f"%{allocationRatio *100}"
     row += 1
+ozetDF.at[row, "Aciliyet"] = "Hammadde kullanımı"
+sumInv = sum(H_i[i] for i in setI)
+sumAlloc = sum(x_iju[(i, j, u)] for (i, j) in setIJ for u in setU)
+ozetDF.at[row, "Talep (ton)"] = f"Toplam stok: {sumInv}"
+ozetDF.at[row, "Tahsis (ton)"] = f"Toplam tahsis: {sumAlloc}"
+ozetDF.at[row, "Tahsis Oranı"] = f"%{sumAlloc/sumInv * 100}"
     
 ozetDF.to_excel("results/assignmentModelSummary.xlsx", index=False)
 

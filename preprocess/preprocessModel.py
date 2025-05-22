@@ -2,7 +2,10 @@ import pandas as pd
 
 def preprocessModel():
     specGroupsDF = pd.read_excel("preprocessedBelgeler/NEWspecGroupsTam_last3_altLimit100.xlsx")
-    orders_df = pd.read_excel("preprocessedBelgeler/NewpreprocessedFinalOrders.xlsx")
+    orders_df = pd.read_excel("preprocessedBelgeler/NewpreprocessedFinalOrders2025.xlsx")
+
+    list= ["31 HR",	"31 PHR",	"31 CRF",	"31 GCR",	"31 GHR",	"31 PPG",	"41 HR",	"41 PHR",	"41 CRF",	"41 GCR",	"41 GHR",	"41 PPG"]
+    orders_df["Açık Mik.(TON)"] = orders_df["Açık Mik.(TON)"] - sum(orders_df[i] for i in list) / 1000
 
     gecmisEslemelerDF = pd.read_excel("mmkBelgeler/KU004 Sipariş bazında eşlenen HR tarihçesi.xlsx")
     gecmisEslemelerDF = gecmisEslemelerDF.merge(specGroupsDF, left_on="Müşteri malzeme numarası", right_on="SPEC", how="left")
@@ -74,7 +77,6 @@ def preprocessModel():
             kesmePayi_i[i] = None  # or np.nan / 0
 
 
-    #print(grade_j, kalinlik_j, genislik_j)
     setIJ = set()
     for i in setI:
         gradeI = grade_i[i]
@@ -89,6 +91,7 @@ def preprocessModel():
             #print(genislikI, genislikJ)
             if gradeI == gradeJ and kalinlikI == kalinlikJ and genislikI == genislikJ:
                     setIJ.add((i,j))
+                    print("Same")
 
             elif gradeI in dictGrade[gradeJ]:
                 #Kalinlik check
@@ -137,9 +140,12 @@ def preprocessModel():
         specs = spec_to_group[spec_to_group["SpecGroupId"] == j]["SPEC"].unique()
         orders = orders_df[orders_df["Müşteri malzeme numarası"].isin(specs)]
         high_urgency_orders = orders[orders["Öncelik Tanımı"] == 'Acil sipariş kalemi']
-        normal_orders = orders[orders["Öncelik Tanımı"] == 'Normal öncellikli sipariş kalemi']
-        d1 = high_urgency_orders["Sipariş Mik. (TON)"].sum()
-        d2 = normal_orders["Sipariş Mik. (TON)"].sum()
+        normal_orders = orders[
+            (orders["Öncelik Tanımı"] == 'Normal öncellikli sipariş kalemi') |
+            (orders["Öncelik Tanımı"] == 'Termininden önce üretilmesin')
+        ]        
+        d1 = high_urgency_orders["Açık Mik.(TON)"].sum()
+        d2 = normal_orders["Açık Mik.(TON)"].sum()
         d3 = forecast_df[forecast_df["SpecGroupId"] == j]["Forecast_TON"].sum()
         dju[(j, 1)] = d1 if d1 > 10 ** -3 else 0
         dju[(j, 2)] = d2 if d2 > 10 ** -3 else 0
@@ -164,6 +170,8 @@ def preprocessModel():
                         f.write(f"Hammadde: ({genislik_i[i]}x{kalinlik_i[i]}x{grade_i[i]}) Stok: {H_i[i]} \n")
     """
 
+    
+
     """for j in setJ:
         if sum(dju[(j,u)] for u in setU) > 0:
             print(f"SpecGroupId: {j} ({genislik_j[j]}x{kalinlik_j[j]}x{grade_j[j]}) Demand: {dju[(j, 1)]} {dju[(j, 2)]} {dju[(j, 3)]}")
@@ -177,7 +185,7 @@ def preprocessModel():
 
 
 
-#setI, setJ, setU, setIJ, H_i, dju = preprocessModel()
+setI, setJ, setU, setIJ, H_i, dju, dictTanimI, dictTanimJ = preprocessModel()
 
 """
 #to pickle
