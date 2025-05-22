@@ -117,3 +117,14 @@ ozetDF.at[row, "Tahsis Oranı"] = f"%{sumAlloc/sumInv * 100}"
 ozetDF.to_excel("results/assignmentModelSummary.xlsx", index=False)
 
 print("Results saved to results/assignmentModel.xlsx and results/assignmentModelSummary.xlsx")
+
+hammaddeKullanımDF = pd.DataFrame(columns=["Hammadde", "Hammadde Tanımı", "Kullanım (ton)", "Stok (ton)", "Kullanım Oranı"])
+row=0
+for i in setI:
+    hammaddeKullanımDF.at[row, "Hammadde"] = i
+    hammaddeKullanımDF.at[row, "Hammadde Tanımı"] = dictTanimI[i]
+    hammaddeKullanımDF.at[row, "Kullanım (ton)"] = sum(x_iju[(i, j, u)] for j in setJ for u in setU if (i, j) in setIJ)
+    hammaddeKullanımDF.at[row, "Stok (ton)"] = H_i[i]
+    hammaddeKullanımDF.at[row, "Kullanım Oranı"] = f"%{hammaddeKullanımDF.at[row, 'Kullanım (ton)'] / H_i[i] * 100}"
+    row += 1
+hammaddeKullanımDF.to_excel("results/hammaddeKullanım.xlsx", index=False)    

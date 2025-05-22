@@ -49,15 +49,34 @@ def preprocessModel():
                     dictGrade[g].append(row["Bileşen Grade"])
                     matched = True
                     
-    for g in setGrade:
-        print(f"{g}: {dictGrade[g]}")
-    print(specGroupsDF.head())
+    """for g in setGrade:
+        print(f"{g}: {dictGrade[g]}")"""
+    
+
     grade_i = {i:hammaddeDF.loc[i, "Grade"] for i in setI}
-    grade_j = {j:specGroupsDF.loc[j, "Grade"] for j in setJ}
+    grade_j = {
+        j: specGroupsDF.loc[j, "Grade"].iloc[0]
+        if isinstance(specGroupsDF.loc[j, "Grade"], pd.Series)
+        else specGroupsDF.loc[j, "Grade"]
+        for j in setJ
+    }
     kalinlik_i = {i:float(hammaddeDF.loc[i, "Kalınlık"]) for i in setI}
-    kalinlik_j = {j:float(specGroupsDF.loc[j, "Kalinlik"].replace(",",".")) for j in setJ}
+    #kalinlik_j = {j:float(specGroupsDF.loc[j, "Kalinlik"].replace(",",".")) for j in setJ}
+    kalinlik_j = {
+        j: float(specGroupsDF.loc[j, "Kalinlik"].iloc[0].replace(",", "."))
+        if isinstance(specGroupsDF.loc[j, "Kalinlik"], pd.Series)
+        else float(specGroupsDF.loc[j, "Kalinlik"].replace(",", "."))
+        for j in setJ
+    }
     genislik_i = {i:float(hammaddeDF.loc[i, "Genişlik"]) for i in setI}
-    genislik_j = {j:float(specGroupsDF.loc[j, "Genislik_Grouped"]) for j in setJ}
+    #genislik_j = {j:float(specGroupsDF.loc[j, "Genislik_Grouped"]) for j in setJ}
+    genislik_j = {
+        j: float(specGroupsDF.loc[j, "Genislik_Grouped"].iloc[0])
+        if isinstance(specGroupsDF.loc[j, "Genislik_Grouped"], pd.Series)
+        else float(specGroupsDF.loc[j, "Genislik_Grouped"])
+        for j in setJ
+    }
+    
 
     kesmePayi_i = {}
 
@@ -77,10 +96,17 @@ def preprocessModel():
             #print(f"Match found for {i} with grade {grade} and kalinlik {kalinlik}: {kesmePayi_i[i]}")
         else:
             #print(f"No match found for {i} with grade {grade} and kalinlik {kalinlik}")
-            kesmePayi_i[i] = None  # or np.nan / 0
+            kesmePayi_i[i] = 0  # or np.nan / 0
 
 
     setIJ = set()
+
+    for index, row in gecmisEslemelerDF.iterrows():
+        i = row["Malzeme"]
+        j = row["SpecGroupId"]
+        if i in setI and j in setJ:
+            setIJ.add((i,j))
+
     for i in setI:
         gradeI = grade_i[i]
         kalinlikI = kalinlik_i[i]
@@ -89,16 +115,20 @@ def preprocessModel():
             gradeJ = grade_j[j]
             kalinlikJ = kalinlik_j[j]
             genislikJ = genislik_j[j]
-            #print(gradeI, gradeJ)
-            #print(kalinlikI, kalinlikJ)
-            #print(genislikI, genislikJ)
+            """print("gradei:", gradeI)
+            print("gradej:", gradeJ)
+            print("kalinliki:", kalinlikI)
+            print("kalinlikj:", kalinlikJ)
+            print("genisliki:", genislikI)
+            print("genislikj:", genislikJ)"""
+            
             if gradeI == gradeJ and kalinlikI == kalinlikJ and genislikI == genislikJ:
                     setIJ.add((i,j))
                     #print("Same")
 
             elif gradeI in dictGrade[gradeJ]:
                 #Kalinlik check
-                if genislik_i == genislik_j + kesmePayi_i[i]:
+                if genislikI == genislikJ + kesmePayi_i[i]:
                 #TODO!!! buraya KU008 eklenecek
                 #if True:
                     matched_rows = ezmeTablosuDF[
@@ -111,16 +141,15 @@ def preprocessModel():
                     ]
 
                     if not matched_rows.empty:
-                        setIJ.add((i,j))
-                        #print(f"✔ Match Found for i={i} and j={j}")
+                        if (i,j) not in setIJ:
+                            setIJ.add((i,j))
+                            #print(f"✔ Match Found for i={i} and j={j}")
+                        #else:
+                            #print(f"✘ Match already exists for i={i} and j={j}")
                         
                 
 
-    for index, row in gecmisEslemelerDF.iterrows():
-        i = row["Malzeme"]
-        j = row["SpecGroupId"]
-        if i in setI and j in setJ:
-            setIJ.add((i,j))
+    
 
 
     orders_df["Yaratma tarihi"] = pd.to_datetime(orders_df["Yaratma tarihi"], errors="coerce")
@@ -190,6 +219,17 @@ def preprocessModel():
 
 
 setI, setJ, setU, setIJ, H_i, dju, dictTanimI, dictTanimJ = preprocessModel()
+
+eslenenDF = pd.DataFrame(columns=["Hammadde", "Hammadde Tanımı", "SpecGroupId", "Ürün Tanımı"])
+row = 0
+for (i,j) in setIJ:
+    if H_i[i] > 0 and sum(dju[(j,u)] for u in setU) > 0:
+        eslenenDF.at[row, "Hammadde"] = i
+        eslenenDF.at[row, "Hammadde Tanımı"] = dictTanimI[i]
+        eslenenDF.at[row, "SpecGroupId"] = j
+        eslenenDF.at[row, "Ürün Tanımı"] = dictTanimJ[j]
+        row += 1
+eslenenDF.to_excel("preprocessedBelgeler/eslenenDF.xlsx", index=False)
 
 """
 #to pickle
