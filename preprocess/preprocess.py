@@ -19,13 +19,9 @@ def getConcatOrdersDF():
         orders_df = pd.read_excel(os.path.join("mmkBelgeler/siparisler",file), header=0, engine='openpyxl')
         orders_df["Yaratma tarihi"] = pd.to_datetime(orders_df["Yaratma tarihi"], errors='coerce')
         finalOrdersDF = pd.concat([finalOrdersDF, orders_df])
-    print(f"Final Orders DF shape: {finalOrdersDF.shape}")
-    print(finalOrdersDF.head())
     finalOrdersDF = finalOrdersDF[finalOrdersDF["Müşteri malzeme numarası"].notna()]
-    print(finalOrdersDF.head())
 
     finalOrdersDF["Müşteri malzeme numarası"] = finalOrdersDF["Müşteri malzeme numarası"].astype(int)
-    print(finalOrdersDF.head())
 
     return finalOrdersDF
 

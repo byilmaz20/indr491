@@ -51,7 +51,7 @@ def preprocessModel():
                     
     for g in setGrade:
         print(f"{g}: {dictGrade[g]}")
-
+    print(specGroupsDF.head())
     grade_i = {i:hammaddeDF.loc[i, "Grade"] for i in setI}
     grade_j = {j:specGroupsDF.loc[j, "Grade"] for j in setJ}
     kalinlik_i = {i:float(hammaddeDF.loc[i, "Kalınlık"]) for i in setI}
