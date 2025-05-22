@@ -37,14 +37,17 @@ def assign_genislik_group(row):
     planlanan = row['Planlanan']
 
     if genislik >= 800:
+        #print(f'Matched genislik: {genislik} >= 800')
         return genislik
     elif planlanan >= 800:
+        #print(f'Matched planlanan: {planlanan} >= 800')
         return planlanan
     else:
         # Find the first multiple of genislik that is >= 800
         if genislik == 0:
             return 800  # avoid division by zero
         multiple = ((800 + genislik - 1) // genislik) * genislik
+        #print(f'Matched multiple: {multiple} (genislik: {genislik}, planlanan: {planlanan})')
         return multiple
 
 def getSpecGroups(planlanan, siparisAltLimit = 100, lastXyear = 8):
@@ -63,37 +66,66 @@ def getSpecGroups(planlanan, siparisAltLimit = 100, lastXyear = 8):
     specDF["Planlanan"] = specDF["Planlanan"].fillna(0)
     #fill genislik group with genişlik if >=800, else use planlanan if planlanan >=800 else use first multiply of genişlik that is >=800
     specDF["Genislik_Grouped"] = specDF.apply(assign_genislik_group, axis=1)
-
     specDF['SpecGroupId'] = specDF.groupby(['Kalinlik', 'Genislik_Grouped', 'Grade']).ngroup() + 1
     lastXyearSiparisDF = getSiparisBySpec(lastXyear)
+    lastXyearSiparisDF["SPEC"] = lastXyearSiparisDF["SPEC"].astype(float).astype(int).astype(str)
+    print('lastXyearSiparisDF: ', lastXyearSiparisDF.head())
     lastXyearSiparisDF["SPEC"] = lastXyearSiparisDF["SPEC"].astype(str)
+    print('lastXyearSiparisDF after astype str: ', lastXyearSiparisDF.head())
+    print("specDF herex: ", specDF.head())
+    
     mergedDF = specDF.merge(lastXyearSiparisDF, left_on="SPEC", right_on="SPEC", how="left")
     mergedDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"] = mergedDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"].fillna(0)
     sumDF = mergedDF.groupby(["SpecGroupId"])[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"].sum().reset_index()
-    sumDF = sumDF[sumDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"] > siparisAltLimit]
+    print('sumDF: ', sumDF.head())
+    if (sumDF["Son 3 yıl Sipariş Mik. (TON) Toplam"] != 0).any():
+        print("✅ There are non-zero values in 'Son 3 yıl Sipariş Mik. (TON) Toplam'")
+    else:
+        print("❌ All values in 'Son 3 yıl Sipariş Mik. (TON) Toplam' are zero")
 
+    
+    sumDF = sumDF[sumDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"] > siparisAltLimit]
+    print('sumDF: ', sumDF.head())
+    print("specDF here4: ", specDF.head())
     filteredGroupIds = sumDF["SpecGroupId"].unique()
+    print("specDF here5: ", specDF.head())
+
     cleanSpecDF = specDF[specDF["SpecGroupId"].isin(filteredGroupIds)].copy()
+    print("specDF here6: ", cleanSpecDF.head())
+
     cleanSpecDF['SpecGroupId'] = cleanSpecDF.groupby(['Kalinlik', 'Genislik_Grouped', 'Grade']).ngroup() + 1
+    print("specDF here7: ", cleanSpecDF.head())
+
     specDF = cleanSpecDF[["SPEC", "SpecGroupId", "Kalinlik", "Genislik", "Genislik_Grouped", "Grade"]].sort_values("SpecGroupId")
+    print("specDF here8: ", specDF.head())
     gradeGroupsDF = pd.read_excel("mmkBelgeler/KU015 Grade Grupları.xlsx", index_col=0)
     grade_map = gradeGroupsDF["Grup"].to_dict()
     #print(grade_map)
-    specDF["GradeGroup"] = specDF["Grade"].apply(lambda g: grade_map.get(g, g))    
+    specDF["GradeGroup"] = specDF["Grade"].apply(lambda g: grade_map.get(g, g))   
+     
     return specDF
 
 
 def getForecastData(planlanan, siparisAltLimit = 0, lastXyear = 8, finalOrdersDF = getConcatOrdersDF()):
+    # print sizes of dataframes
+
+
     specGroupsDF = getSpecGroups(planlanan, siparisAltLimit, lastXyear) 
-    #print("specGroupsDF: ", specGroupsDF.head())
+
+    print("specGroupsDF: ", specGroupsDF.head())
 
     finalOrdersDF["Yaratma tarihi"] = pd.to_datetime(finalOrdersDF["Yaratma tarihi"], errors="coerce")
     finalOrdersDF["Month"] = finalOrdersDF["Yaratma tarihi"].dt.strftime("%m.%Y")
+
+    finalOrdersDF["Müşteri malzeme numarası"] = finalOrdersDF["Müşteri malzeme numarası"].astype(str).str.rstrip(".0")
+    finalOrdersDF["Müşteri malzeme numarası"] = finalOrdersDF["Müşteri malzeme numarası"].astype(str).str.replace(",", ".")
 
     mergedDF = finalOrdersDF.merge(specGroupsDF, left_on="Müşteri malzeme numarası", right_on="SPEC", how="left")
     mergedDF["SpecGroupId"] = mergedDF["SpecGroupId"].fillna(0)
 
     resultDF = mergedDF.groupby(["Month", "SpecGroupId", "Grade"])["Sipariş Mik. (TON)"].sum().reset_index()
+    print("resultDF: ", resultDF.shape)
+    print(resultDF.head())
     
 
     #Zero filling
