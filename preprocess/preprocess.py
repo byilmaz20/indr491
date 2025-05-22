@@ -32,30 +32,45 @@ def getSiparisBySpec(lastXyear = 3, finalOrdersDF = getConcatOrdersDF()):
 
     return resultDF
 
+def assign_genislik_group(row):
+    genislik = row['Genislik']
+    planlanan = row['Planlanan']
+
+    if genislik >= 800:
+        return genislik
+    elif planlanan >= 800:
+        return planlanan
+    else:
+        # Find the first multiple of genislik that is >= 800
+        if genislik == 0:
+            return 800  # avoid division by zero
+        multiple = ((800 + genislik - 1) // genislik) * genislik
+        return multiple
 
 def getSpecGroups(planlanan, siparisAltLimit = 100, lastXyear = 8):
     specDF = getSpecDF()
+    specDF["Genislik"] = specDF["Genislik"].astype(str).str.replace(",", ".").astype(float)
+    specDF["SPEC"] = specDF["SPEC"].astype(str)
+    #specDF.to_excel("preprocessedBelgeler/DENEMEspecDF.xlsx", index=False)
 
-    specDF["Genislik_Grouped"] = specDF.apply(
-        lambda row: planlanan.get(int(row["SPEC"]), str(row["Genislik"])) if row["Genislik"] < 800 else str(row["Genislik"]),
-        axis=1
-    )
+    planlananDF = pd.DataFrame(list(planlanan.items()), columns=["SPEC", "Planlanan"])
+    planlananDF["Planlanan"] = planlananDF["Planlanan"].astype(int)
+    planlananDF["SPEC"] = planlananDF["SPEC"].astype(str)
+    #planlananDF.to_excel("preprocessedBelgeler/DENEMEplanlananDF.xlsx", index=False)
+
+    specDF = specDF.merge(planlananDF, left_on="SPEC", right_on="SPEC", how="left")
+    #.fillna(0)
+    specDF["Planlanan"] = specDF["Planlanan"].fillna(0)
+    #fill genislik group with genişlik if >=800, else use planlanan if planlanan >=800 else use first multiply of genişlik that is >=800
+    specDF["Genislik_Grouped"] = specDF.apply(assign_genislik_group, axis=1)
+
     specDF['SpecGroupId'] = specDF.groupby(['Kalinlik', 'Genislik_Grouped', 'Grade']).ngroup() + 1
     lastXyearSiparisDF = getSiparisBySpec(lastXyear)
+    lastXyearSiparisDF["SPEC"] = lastXyearSiparisDF["SPEC"].astype(str)
     mergedDF = specDF.merge(lastXyearSiparisDF, left_on="SPEC", right_on="SPEC", how="left")
     mergedDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"] = mergedDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"].fillna(0)
     sumDF = mergedDF.groupby(["SpecGroupId"])[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"].sum().reset_index()
     sumDF = sumDF[sumDF[f"Son {lastXyear} yıl Sipariş Mik. (TON) Toplam"] > siparisAltLimit]
-
-    """
-    specDF = mergedDF[mergedDF["SpecGroupId"].isin(sumDF["SpecGroupId"])]
-    specDF = specDF.copy()
-    print(specDF.columns)
-    specDF['SpecGroupId'] = specDF.groupby(['Kalinlik', 'Genislik_Grouped', 'Grade']).ngroup() + 1
-    specDF = specDF[["SPEC", "SpecGroupId", 'Kalinlik', 'Genislik','Genislik_Grouped', 'Grade']]
-    specDF = specDF.sort_values(by='SpecGroupId')
-    return specDF
-    """
 
     filteredGroupIds = sumDF["SpecGroupId"].unique()
     cleanSpecDF = specDF[specDF["SpecGroupId"].isin(filteredGroupIds)].copy()
@@ -117,15 +132,20 @@ def getPlanlanan(finalOrdersDF):
 
 
 finalOrdersDF = getConcatOrdersDF() # get all orders
-finalOrdersDF = finalOrdersDF[finalOrdersDF["Yaratma tarihi"].dt.year >= 2025]
 # save to excel
-finalOrdersFile = "preprocessedBelgeler/NewpreprocessedFinalOrders2025.xlsx"
-finalOrdersDF.to_excel(finalOrdersFile, index=False)
+finalOrdersFile = "preprocessedBelgeler/NewpreprocessedFinalOrders.xlsx"
+#finalOrdersDF.to_excel(finalOrdersFile, index=False)
 siparisBySpecDF = getSiparisBySpec(3, finalOrdersDF)
 siparisBySpecFile = "preprocessedBelgeler/NewpreprocessedDemandBySpecTamSon3.xlsx"
 siparisBySpecDF.to_excel(siparisBySpecFile, index=False)
 
 planlanan = getPlanlanan(finalOrdersDF)
+# save to excel
+planlananFile = "preprocessedBelgeler/NewpreprocessedPlanlanan.xlsx"
+planlananDF = pd.DataFrame(list(planlanan.items()), columns=["SPEC", "Planlanan"])
+planlananDF["Planlanan"] = planlananDF["Planlanan"].astype(int)
+
+planlananDF.to_excel(planlananFile, index=False)
 
 specGroups100DF = getSpecGroups(planlanan, 100, 3)
 specGroups100File = "preprocessedBelgeler/NEWspecGroupsTam_last3_altLimit100.xlsx"
