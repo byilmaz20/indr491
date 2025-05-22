@@ -45,9 +45,12 @@ def preprocessModel():
                 dictGrade[row["Malzeme Grade"]].append(row["Bileşen Grade"])
                 matched = True
             for g in dictGrade:
-                if row["Bileşen Grade"] in dictGrade[g] and row["Malzeme Grade"] not in dictGrade[g]:
-                    dictGrade[g].append(row["Malzeme Grade"])
+                if row["Malzeme Grade"] in dictGrade[g] and row["Bileşen Grade"] not in dictGrade[g]:
+                    dictGrade[g].append(row["Bileşen Grade"])
                     matched = True
+                    
+    for g in setGrade:
+        print(f"{g}: {dictGrade[g]}")
 
     grade_i = {i:hammaddeDF.loc[i, "Grade"] for i in setI}
     grade_j = {j:specGroupsDF.loc[j, "Grade"] for j in setJ}
@@ -91,7 +94,7 @@ def preprocessModel():
             #print(genislikI, genislikJ)
             if gradeI == gradeJ and kalinlikI == kalinlikJ and genislikI == genislikJ:
                     setIJ.add((i,j))
-                    print("Same")
+                    #print("Same")
 
             elif gradeI in dictGrade[gradeJ]:
                 #Kalinlik check
