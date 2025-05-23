@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import random
 
 # === Load and clean data ===
-df = pd.read_excel("/Users/samet/INDR491CodeBase/indr491-1/preprocessedBelgeler/zero_filled_forecastData_altLimit100_son3_byGrup.xlsx.xlsx")
+df = pd.read_excel("/Users/samet/INDR491CodeBase/preprocessedBelgeler/NewforecastData_altLimit100_son3_byGrup.xlsx")
 df["Sipariş Mik. (TON)"] = (
     df["Sipariş Mik. (TON)"]
     .astype(str)

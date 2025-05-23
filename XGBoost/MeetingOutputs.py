@@ -5,8 +5,11 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.metrics import r2_score
 
+#specgroupid'ler özelinde tahminle
+#sonra gradegroup olarak topla sonuçları
+
 # === Load and clean data ===
-df = pd.read_excel("/Users/samet/INDR491CodeBase/indr491-1/preprocessedBelgeler/zero_filled_forecastData_altLimit100_son3_byGrup.xlsx.xlsx")
+df = pd.read_excel("/Users/samet/INDR491CodeBase/preprocessedBelgeler/NewforecastData_altLimit100_son3_byGrup.xlsx")
 df["Sipariş Mik. (TON)"] = (
     df["Sipariş Mik. (TON)"]
     .astype(str)
@@ -17,7 +20,8 @@ df["Month"] = pd.to_datetime(df["Month"], errors='coerce')
 df["month"] = df["Month"].dt.month
 df["year"] = df["Month"].dt.year
 df = df.dropna(subset=["Month"])
-df["Grade"] = df["Grade"].astype(str)
+#df["Grade"] = df["Grade"].astype(str)
+df["GradeGroup"] = df["GradeGroup"].astype(str)
 
 # === Feature Engineering ===
 df = df.sort_values(by=["SpecGroupId", "Month"]).reset_index(drop=True)
@@ -106,8 +110,8 @@ def wmape(y_true, y_pred):
     y_true, y_pred = np.array(y_true), np.array(y_pred)
     return np.sum(np.abs(y_true - y_pred)) / np.sum(np.abs(y_true)) * 100
 
-# === 1. Grade + Month Bazlı Aggregate Performans ===
-grade_month = test_df.groupby(["Grade", "year", "month"]).agg(
+# 1. GradeGroup + Month Bazlı Aggregate Performans
+grade_month = test_df.groupby(["GradeGroup", "year", "month"]).agg(
     actual_sum=("Sipariş Mik. (TON)", "sum"),
     pred_sum=("y_pred", "sum")
 ).reset_index()
@@ -180,12 +184,12 @@ months_to_plot = [(2024,6), (2024,7)]
 for year, month in months_to_plot:
     temp = test_df[(test_df["year"] == year) & (test_df["month"] == month)]
     if len(temp) > 0:
-        grouped = temp.groupby("Grade").agg(
+        grouped = temp.groupby("GradeGroup").agg(
             actual_sum=("Sipariş Mik. (TON)", "sum"),
             pred_sum=("y_pred", "sum")
         ).reset_index()
 
-        grouped.plot(kind="bar", x="Grade", y=["actual_sum", "pred_sum"], figsize=(10,6))
+        grouped.plot(kind="bar", x="GradeGroup", y=["actual_sum", "pred_sum"], figsize=(10,6))
         plt.title(f"{year}-{month:02d} Grade Bazlı Tahmin vs Gerçek Sipariş")
         plt.ylabel("Sipariş Miktarı (TON)")
         plt.grid(True)
