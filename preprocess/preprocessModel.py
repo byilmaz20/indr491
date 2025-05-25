@@ -212,15 +212,27 @@ def preprocessModel():
                 if H_i[i] > 0 and (i,j) in setIJ:
                     print(f"Hammadde: ({genislik_i[i]}x{kalinlik_i[i]}x{grade_i[i]}) Stok: {H_i[i]} ")
     """
+
+    
+
     dictTanimI = {i: f"({genislik_i[i]}x{kalinlik_i[i]}x{grade_i[i]})" for i in setI}
     dictTanimJ = {j: f"({genislik_j[j]}x{kalinlik_j[j]}x{grade_j[j]})" for j in setJ}
     return setI, setJ, setU, setIJ, H_i, dju, dictTanimI, dictTanimJ
 
 
 
-setI, setJ, setU, setIJ, H_i, dju, dictTanimI, dictTanimJ = preprocessModel()
+#setI, setJ, setU, setIJ, H_i, dju, dictTanimI, dictTanimJ = preprocessModel()
 
-eslenenDF = pd.DataFrame(columns=["Hammadde", "Hammadde Tanımı", "SpecGroupId", "Ürün Tanımı"])
+"""forecast_df = pd.read_excel("results/SARIMAX_forecast.xlsx")
+forecast_df["Grup tanımı"] = forecast_df["SpecGroupId"].map(dictTanimJ)
+#format from 2025-03-01 00:00:00 to 2025-03
+forecast_df["Month"] = forecast_df["Month"].dt.strftime("%Y-%m")
+#format Forecast_TON to 2 decimal places and make 0 if negative
+forecast_df["Forecast_TON"] = forecast_df["Forecast_TON"].round(2)
+forecast_df["Forecast_TON"] = forecast_df["Forecast_TON"].apply(lambda x: max(x, 0))
+forecast_df.to_excel("results/SARIMAX_forecast_formatted.xlsx", index=False)"""
+
+"""eslenenDF = pd.DataFrame(columns=["Hammadde", "Hammadde Tanımı", "SpecGroupId", "Ürün Tanımı"])
 row = 0
 for (i,j) in setIJ:
     if H_i[i] > 0 and sum(dju[(j,u)] for u in setU) > 0:
@@ -229,7 +241,7 @@ for (i,j) in setIJ:
         eslenenDF.at[row, "SpecGroupId"] = j
         eslenenDF.at[row, "Ürün Tanımı"] = dictTanimJ[j]
         row += 1
-eslenenDF.to_excel("preprocessedBelgeler/eslenenDF.xlsx", index=False)
+eslenenDF.to_excel("preprocessedBelgeler/eslenenDF.xlsx", index=False)"""
 
 """
 #to pickle

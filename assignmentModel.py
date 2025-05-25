@@ -48,7 +48,7 @@ def solve_fractional_assignment_with_urgency(setI, setJ, setU, setIJ, Hi, d_ju, 
         model.addConstr(total_usage <= Hi[i], name=f"capacity_{i}")
 
     #write the model to txt file
-    model.write("results/assignmentModel.lp")
+    #model.write("results/assignmentModel.lp")
         
     # Solve model
     print("Solving model...")
@@ -66,6 +66,17 @@ def solve_fractional_assignment_with_urgency(setI, setJ, setU, setIJ, Hi, d_ju, 
     
 
 setI, setJ, setU, setIJ, H_i, dju, dictTanimI, dictTanimJ = preprocessModel()
+
+setIeslenebilir = set()
+for (i, j) in setIJ:
+    if sum(dju[(j, u)] for u in [1,2]) > 0:
+        setIeslenebilir.add(i)
+            
+setJdemanded = set()
+for j in setJ:
+    for u in [1, 2]:
+        if dju[(j, u)] > 0:
+            setJdemanded.add(j)
 
 partial = True
 
@@ -113,8 +124,8 @@ for u in setU:
     ozetDF.at[row, "Tahsis Oranı"] = f"%{allocationRatio *100}"
     row += 1
 ozetDF.at[row, "Aciliyet"] = "Hammadde kullanımı"
-sumInv = sum(H_i[i] for i in setI)
-sumAlloc = sum(x_iju[(i, j, u)] for (i, j) in setIJ for u in setU)
+sumInv = sum(H_i[i] for i in setIeslenebilir)
+sumAlloc = sum(x_iju[(i, j, u)] for (i, j) in setIJ for u in setU if i in setIeslenebilir)
 ozetDF.at[row, "Talep (ton)"] = f"Toplam stok: {sumInv}"
 ozetDF.at[row, "Tahsis (ton)"] = f"Toplam tahsis: {sumAlloc}"
 ozetDF.at[row, "Tahsis Oranı"] = f"%{sumAlloc/sumInv * 100}"
@@ -257,3 +268,43 @@ with open("results/hrc_product_network_echarts.json", "w") as f:
 # Print completion message
 print("Network graph saved to results/hrc_product_network_echarts.json")
 # -------------------- End of Code --------------------
+
+
+# Aciliyet bilgileri
+urgency_labels = {1: "Urgent Orders", 2: "Normal Orders", 3: "Forecast Orders"}
+urgency_colors = {'Met Demand': '#4CAF50', 'Unmet Demand': '#F44336'}  # Green and Red
+
+# X ekseninde aciliyet seviyeleri
+x = [urgency_labels[u] for u in setU]
+x_indices = np.arange(len(setU))
+
+# Y ekseninde tahsis ve karşılanamayan miktarlar
+assigned_vals = []
+unmet_vals = []
+
+for u in setU:
+    total_demand = sum(dju[(j, u)] for j in setJ)
+    total_assigned = sum(x_iju[(i, j, u)] for (i, j) in setIJ)
+    total_unmet = total_demand - total_assigned
+    if u==3:
+        total_unmet = 0
+
+    assigned_vals.append(total_assigned)
+    unmet_vals.append(total_unmet)
+
+# Grafiği çiz
+plt.figure(figsize=(8, 6))
+plt.bar(x_indices, assigned_vals, color=urgency_colors['Met Demand'], label='Assigned Orders (tons)')
+plt.bar(x_indices, unmet_vals, bottom=assigned_vals, color=urgency_colors['Unmet Demand'], label='Not Assigned Orders (tons)')
+
+# Etiketler ve düzen
+plt.xticks(x_indices, x)
+plt.xlabel('Urgency of Orders')
+plt.ylabel('Total Demand (tons)')
+plt.title('Order Fulfillment by Urgency Level')
+plt.legend()
+plt.tight_layout()
+
+# Kaydet ve göster
+plt.savefig("results/aciliyet_barplot.png")
+plt.show()
