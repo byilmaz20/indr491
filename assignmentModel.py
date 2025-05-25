@@ -2,6 +2,11 @@ from gurobipy import Model, GRB, quicksum
 
 from preprocess.preprocessModel import preprocessModel
 
+from itertools import combinations
+from networkx.drawing.layout import bipartite_layout
+import networkx as nx
+import numpy as np
+
 def solve_fractional_assignment_with_urgency(setI, setJ, setU, setIJ, Hi, d_ju, partial = True):
     """
     Parameters:
@@ -128,3 +133,55 @@ for i in setI:
     hammaddeKullanımDF.at[row, "Kullanım Oranı"] = f"%{hammaddeKullanımDF.at[row, 'Kullanım (ton)'] / H_i[i] * 100}"
     row += 1
 hammaddeKullanımDF.to_excel("results/hammaddeKullanım.xlsx", index=False)    
+assignment_data = []
+for i in setI:
+    for j in setJ:
+        for u in setU:
+            if (i, j) in setIJ and x_iju[i, j, u] > 1e-5:
+                assignment_data.append({
+                    "HRC": i,
+                    "Product": j,
+                    "Urgency": u,
+                    "x_iju": x_iju[i, j, u]
+                })
+
+df = pd.DataFrame(assignment_data)
+df_grouped = df.groupby(["HRC", "Product"])["x_iju"].sum().reset_index()
+
+
+
+
+import json
+
+# Eşsiz HRC ve Ürünler
+hrcs = df_grouped["HRC"].unique()
+products = df_grouped["Product"].unique()
+
+# Node listesi
+nodes = [{"name": str(h), "category": int(0)} for h in hrcs] + [{"name": str(p), "category": int(1)} for p in products]
+
+# Link listesi
+links = []
+for _, row in df_grouped.iterrows():
+    links.append({
+        "source": str(int(float(row["HRC"]))),
+        "target": str(int(float(row["Product"]))),
+        "value": float(row["x_iju"])
+    })
+
+# Kategori bilgisi
+categories = [{"name": "HRC"}, {"name": "Product"}]
+
+# Hepsini bir araya getir
+graph_data = {
+    "nodes": nodes,
+    "links": links,
+    "categories": categories
+}
+
+# JSON dosyası olarak kaydet (veya kopyalamalık string)
+with open("results/echarts_graph.json", "w") as f:
+    json.dump(graph_data, f, indent=2)
+
+# veya terminalde yazdırmak istersen:
+print(json.dumps(graph_data, indent=2))

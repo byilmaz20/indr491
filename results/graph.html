@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HRC-Product Assignment Network</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 1000px; height: 600px;"></div>
+
+  <script>
+    var chart = echarts.init(document.getElementById('main'));
+    chart.showLoading();
+
+    fetch('echarts_graph.json')
+      .then(response => response.json())
+      .then(graph => {
+        chart.hideLoading();
+
+        const option = {
+          title: {
+            text: 'HRC-Product Assignment Network',
+            left: 'center',
+            top: '5%',
+          },
+          tooltip: {},
+          legend: [{
+            data: graph.categories.map(a => a.name)
+          }],
+          toolbox: {
+            show: true,
+            feature: {
+            saveAsImage: {
+                title: 'Save'
+            }
+            }
+          },
+          animationDuration: 1000,
+          animationEasingUpdate: 'quinticInOut',
+          series: [{
+            name: 'Assignment Network',
+            type: 'graph',
+            layout: 'force',
+            data: graph.nodes,
+            links: graph.links.map(l => ({
+              ...l,
+              lineStyle: {
+                width: Math.log(1 + l.value),
+                opacity: 0.7
+              }
+            })),
+            categories: graph.categories,
+            roam: true,
+            label: {
+              position: 'right',
+              formatter: '{b}',
+              show: false
+            },
+            force: {
+              repulsion: 250,
+              edgeLength: 100
+            },
+            lineStyle: {
+              color: 'source',
+              curveness: 0.2
+            },
+            emphasis: {
+              focus: 'adjacency',
+              lineStyle: {
+                width: 4
+              }
+            }
+          }]
+        };
+
+        chart.setOption(option);
+      });
+  </script>
+</body>
+</html>
