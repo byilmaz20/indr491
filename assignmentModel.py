@@ -180,3 +180,73 @@ plt.tight_layout()
 # Kaydet ve göster
 plt.savefig("results/aciliyet_barplot.png")
 plt.show()
+
+
+import networkx as nx
+import matplotlib.pyplot as plt
+from collections import defaultdict
+
+# Create graph
+G = nx.DiGraph()
+
+# Node types and colors
+node_colors = {}
+node_labels = {}
+
+# Add nodes with types
+for i in setI:
+    node_id = f"RM-{i}"
+    G.add_node(node_id)
+    node_colors[node_id] = '#1f77b4'  # blue for raw material
+    node_labels[node_id] = dictTanimI[i]
+
+for j in setJ:
+    node_id = f"ORD-{j}"
+    G.add_node(node_id)
+    node_colors[node_id] = '#2ca02c'  # green for order
+    node_labels[node_id] = dictTanimJ[j]
+
+# Add summed edges (i,j)
+assignment_sum = defaultdict(float)
+for (i, j, u), val in x_iju.items():
+    if val > 1e-6:
+        assignment_sum[(i, j)] += val
+
+for (i, j), val in assignment_sum.items():
+    G.add_edge(f"RM-{i}", f"ORD-{j}", weight=val)
+    #print(val)
+
+# Graph layout
+pos = nx.spring_layout(G, k=0.2, iterations=50, seed=42)  # "spring force" layout
+
+# Draw nodes with color by type
+node_color_list = [node_colors[n] for n in G.nodes()]
+nx.draw_networkx_nodes(G, pos, node_size=10, node_color=node_color_list, alpha=0.9)
+
+# Draw edges with width proportional to tons assigned
+edges = G.edges(data=True)
+
+edge_widths = [max(10, d['weight'] / 10)/10 for (_, _, d) in edges]
+#no arrows
+nx.draw_networkx_edges(G, pos, edgelist=edges, width=edge_widths, edge_color='gray', alpha=0.6, arrows=False)
+#nx.draw_networkx_edges(G, pos, edgelist=edges, width=edge_widths, edge_color='gray', alpha=0.6)
+
+# Optional: draw node labels
+#nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=7)
+
+# Legend
+import matplotlib.patches as mpatches
+legend_handles = [
+    mpatches.Patch(color='#1f77b4', label='Raw Material'),
+    mpatches.Patch(color='#2ca02c', label='Order'),
+]
+plt.legend(handles=legend_handles, loc='best')
+
+# Finalize
+plt.title("Assignment Network: Raw Materials to Orders")
+plt.axis('off')
+plt.tight_layout()
+plt.savefig("results/assignment_network_force_layout.png")
+plt.show()
+
+
