@@ -1,0 +1,1405 @@
+{
+  "nodes": [
+    {
+      "name": "(1213.0x3.0xS235JR+M)",
+      "category": 0
+    },
+    {
+      "name": "(1200.0x3.0xS235JR)",
+      "category": 1
+    },
+    {
+      "name": "(1190.0x3.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1500.0x1.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1220.0x2.5xS235JR)",
+      "category": 0
+    },
+    {
+      "name": "(1200.0x0.8xS280GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.2xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.2xS280GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1400.0x2.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1380.0x0.6xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1380.0x0.7xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1270.0x2.5xS235JR)",
+      "category": 0
+    },
+    {
+      "name": "(1250.0x1.0xS280GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x1.2xS280GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1270.0x2.0xDD13)",
+      "category": 0
+    },
+    {
+      "name": "(1250.0x0.6xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1220.0x3.0xS275JR)",
+      "category": 0
+    },
+    {
+      "name": "(1220.0x1.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1070.0x1.8xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1070.0x0.38xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1160.0x2.0xS235JR)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x0.5xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1160.0x2.5xS235JR)",
+      "category": 0
+    },
+    {
+      "name": "(950.0x0.8xS280GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(980.0x0.8xS280GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1140.0x1.2xS280GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1060.0x2.35xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x1.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1270.0x3.0xDD13)",
+      "category": 0
+    },
+    {
+      "name": "(1250.0x3.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1020.0x3.5xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(986.0x1.8xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1170.0x2.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1130.0x0.5xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1150.0x0.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1170.0x0.5xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1136.0x0.8xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1140.0x1.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x2.0xS275J2)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x4.0x4252)",
+      "category": 0
+    },
+    {
+      "name": "(980.0x4.0xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1190.0x4.0x4252)",
+      "category": 0
+    },
+    {
+      "name": "(1170.0x4.0xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(985.0x3.0x4252)",
+      "category": 0
+    },
+    {
+      "name": "(950.0x1.2xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(985.0x3.8x4252)",
+      "category": 0
+    },
+    {
+      "name": "(914.0x3.8xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1005.0x3.0x4252)",
+      "category": 0
+    },
+    {
+      "name": "(985.0x3.0xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1020.0x3.0x4252)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x1.2xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1296.0x3.0x4252)",
+      "category": 0
+    },
+    {
+      "name": "(1274.0x2.6xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1245.0x2.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1220.0x0.6xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x5.0x6422)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x5.0xDD11)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x2.0xS235JR+M)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x2.0xS235JR)",
+      "category": 1
+    },
+    {
+      "name": "(1020.0x2.5xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x0.8xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.9xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x1.2xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x2.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1020.0x4.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x2.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1080.0x2.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1220.0x4.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1200.0x4.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1270.0x2.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1250.0x0.4xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(967.0x0.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x0.82xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x0.9xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x2.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1270.0x2.5xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1250.0x0.8xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1520.0x3.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1500.0x1.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x1.2xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x1.4xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x1.4xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x1.45xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x1.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x1.5xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x2.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x3.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1520.0x3.5xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1020.0x1.8xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x0.3xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.38xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.4xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.43xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.66xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.7xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x1.8xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1220.0x1.8xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1200.0x0.4xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x0.43xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x0.6xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1220.0x0.7xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x5.0x6422)",
+      "category": 0
+    },
+    {
+      "name": "(1250.0x5.0xDD11)",
+      "category": 1
+    },
+    {
+      "name": "(945.0x2.6xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x1.2xS280GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x4.0xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1220.0x2.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x0.6xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x0.8xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1005.0x3.0xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1220.0x3.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1200.0x0.6xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.0xS280GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.15xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.25xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x1.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x3.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1020.0x2.5xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x2.5xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1020.0x4.0xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1515.0x1.2xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x4.0xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1520.0x2.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1500.0x0.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x0.7xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x0.8xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x0.9xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1270.0x3.5xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1020.0x3.0xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1270.0x3.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1250.0x1.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1190.0x4.0xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1168.0x2.0xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1220.0x3.5xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1200.0x0.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.4xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.75xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1212.0x1.8xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x2.0xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1270.0x2.5xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1250.0x1.2xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x2.5xS320GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1296.0x2.6xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1520.0x1.8xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1500.0x0.8xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1500.0x2.5xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1230.0x3.5xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(908.0x3.5xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1230.0x3.8xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(908.0x3.8xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1020.0x2.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1000.0x0.43xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1250.0x0.5xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.55xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.58xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.6xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1000.0x0.7xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1020.0x3.0xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1020.0x1.35xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1020.0x3.5xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1080.0x1.8xS275JR)",
+      "category": 0
+    },
+    {
+      "name": "(1080.0x0.8xDX51D+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1220.0x2.5xDD11)",
+      "category": 0
+    },
+    {
+      "name": "(1200.0x0.5xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1200.0x1.2xDX51DT+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1220.0x2.5xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1190.0x1.0xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1220.0x4.0xS315MC)",
+      "category": 0
+    },
+    {
+      "name": "(1200.0x2.0xS350GD+Z)",
+      "category": 1
+    },
+    {
+      "name": "(1213.0x2.5xS235JR+M)",
+      "category": 0
+    },
+    {
+      "name": "(1200.0x2.5xS235JR)",
+      "category": 1
+    }
+  ],
+  "links": [
+    {
+      "source": "(1213.0x3.0xS235JR+M)",
+      "target": "(1200.0x3.0xS235JR)",
+      "value": 0.40170268005059784
+    },
+    {
+      "source": "(1190.0x3.0xDD11)",
+      "target": "(1500.0x1.5xDX51D+Z)",
+      "value": 103.26000000000002
+    },
+    {
+      "source": "(1220.0x2.5xS235JR)",
+      "target": "(1200.0x0.8xS280GD+Z)",
+      "value": 9.97
+    },
+    {
+      "source": "(1220.0x2.5xS235JR)",
+      "target": "(1200.0x1.2xDX51D+Z)",
+      "value": 3.49
+    },
+    {
+      "source": "(1220.0x2.5xS235JR)",
+      "target": "(1200.0x1.2xS280GD+Z)",
+      "value": 8.66
+    },
+    {
+      "source": "(1400.0x2.0xDD11)",
+      "target": "(1380.0x0.6xDX51D+Z)",
+      "value": 17.39988157050417
+    },
+    {
+      "source": "(1400.0x2.0xDD11)",
+      "target": "(1380.0x0.7xDX51D+Z)",
+      "value": 15.897765378311266
+    },
+    {
+      "source": "(1270.0x2.5xS235JR)",
+      "target": "(1250.0x1.0xS280GD+Z)",
+      "value": 2.933330635523994
+    },
+    {
+      "source": "(1270.0x2.5xS235JR)",
+      "target": "(1250.0x1.2xS280GD+Z)",
+      "value": 44.546669364476
+    },
+    {
+      "source": "(1270.0x2.0xDD13)",
+      "target": "(1250.0x0.6xDX51D+Z)",
+      "value": 2.719999999999999
+    },
+    {
+      "source": "(1220.0x3.0xS275JR)",
+      "target": "(1220.0x1.5xDX51D+Z)",
+      "value": 18.94
+    },
+    {
+      "source": "(1070.0x1.8xDD11)",
+      "target": "(1070.0x0.38xDX51D+Z)",
+      "value": 19.4
+    },
+    {
+      "source": "(1160.0x2.0xS235JR)",
+      "target": "(1000.0x0.5xDX51DT+Z)",
+      "value": 2.587794893801046
+    },
+    {
+      "source": "(1160.0x2.5xS235JR)",
+      "target": "(950.0x0.8xS280GD+Z)",
+      "value": 2.835000000000001
+    },
+    {
+      "source": "(1160.0x2.5xS235JR)",
+      "target": "(980.0x0.8xS280GD+Z)",
+      "value": 12.315000000000001
+    },
+    {
+      "source": "(1160.0x2.5xS235JR)",
+      "target": "(1140.0x1.2xS280GD+Z)",
+      "value": 6.609999999999999
+    },
+    {
+      "source": "(1060.0x2.35xDD11)",
+      "target": "(1000.0x1.0xDX51D+Z)",
+      "value": 74.62
+    },
+    {
+      "source": "(1270.0x3.0xDD13)",
+      "target": "(1250.0x3.0xDX51D+Z)",
+      "value": 22.94
+    },
+    {
+      "source": "(1020.0x3.5xS315MC)",
+      "target": "(986.0x1.8xDX51D+Z)",
+      "value": 17.14
+    },
+    {
+      "source": "(1170.0x2.0xDD11)",
+      "target": "(1130.0x0.5xDX51DT+Z)",
+      "value": 16.219053957644192
+    },
+    {
+      "source": "(1170.0x2.0xDD11)",
+      "target": "(1150.0x0.5xDX51D+Z)",
+      "value": 21.735139711567456
+    },
+    {
+      "source": "(1170.0x2.0xDD11)",
+      "target": "(1170.0x0.5xDX51DT+Z)",
+      "value": 7.869621555078039
+    },
+    {
+      "source": "(1170.0x2.0xDD11)",
+      "target": "(1136.0x0.8xDX51D+Z)",
+      "value": 10.74875139230171
+    },
+    {
+      "source": "(1170.0x2.0xDD11)",
+      "target": "(1140.0x1.0xDX51D+Z)",
+      "value": 9.787433383408596
+    },
+    {
+      "source": "(1500.0x2.0xS275J2)",
+      "target": "(1500.0x2.0xS275J2)",
+      "value": 18.25116838098091
+    },
+    {
+      "source": "(1000.0x4.0x4252)",
+      "target": "(980.0x4.0xS350GD+Z)",
+      "value": 18.76
+    },
+    {
+      "source": "(1190.0x4.0x4252)",
+      "target": "(1170.0x4.0xS350GD+Z)",
+      "value": 8.30102398060482
+    },
+    {
+      "source": "(985.0x3.0x4252)",
+      "target": "(950.0x1.2xS350GD+Z)",
+      "value": 30.715529014303854
+    },
+    {
+      "source": "(985.0x3.8x4252)",
+      "target": "(914.0x3.8xS350GD+Z)",
+      "value": 37.78634104814563
+    },
+    {
+      "source": "(1005.0x3.0x4252)",
+      "target": "(985.0x3.0xS350GD+Z)",
+      "value": 25.363081760377362
+    },
+    {
+      "source": "(1020.0x3.0x4252)",
+      "target": "(1000.0x1.2xS350GD+Z)",
+      "value": 64.55
+    },
+    {
+      "source": "(1296.0x3.0x4252)",
+      "target": "(1274.0x2.6xS350GD+Z)",
+      "value": 27.35
+    },
+    {
+      "source": "(1245.0x2.0xDD11)",
+      "target": "(1220.0x0.6xDX51DT+Z)",
+      "value": 23.44
+    },
+    {
+      "source": "(1000.0x5.0x6422)",
+      "target": "(1000.0x5.0xDD11)",
+      "value": 7.736375383059508
+    },
+    {
+      "source": "(1000.0x2.0xS235JR+M)",
+      "target": "(1000.0x2.0xS235JR)",
+      "value": 1.56070825130803
+    },
+    {
+      "source": "(1020.0x2.5xDD11)",
+      "target": "(1000.0x0.8xDX51D+Z)",
+      "value": 4.029999999999998
+    },
+    {
+      "source": "(1020.0x2.5xDD11)",
+      "target": "(1000.0x0.9xDX51D+Z)",
+      "value": 40.0
+    },
+    {
+      "source": "(1020.0x2.5xDD11)",
+      "target": "(1000.0x1.0xDX51D+Z)",
+      "value": 65.52000000000001
+    },
+    {
+      "source": "(1020.0x2.5xDD11)",
+      "target": "(1000.0x1.2xDX51D+Z)",
+      "value": 15.520000000000003
+    },
+    {
+      "source": "(1020.0x2.5xDD11)",
+      "target": "(1000.0x2.5xDX51D+Z)",
+      "value": 1.4499999999999993
+    },
+    {
+      "source": "(1020.0x4.0xDD11)",
+      "target": "(1000.0x2.0xDX51D+Z)",
+      "value": 18.5
+    },
+    {
+      "source": "(1080.0x2.0xDD11)",
+      "target": "(1000.0x0.8xDX51D+Z)",
+      "value": 7.7
+    },
+    {
+      "source": "(1220.0x4.0xDD11)",
+      "target": "(1000.0x2.0xDX51D+Z)",
+      "value": 164.68
+    },
+    {
+      "source": "(1220.0x4.0xDD11)",
+      "target": "(1200.0x4.0xDX51D+Z)",
+      "value": 69.53
+    },
+    {
+      "source": "(1270.0x2.0xDD11)",
+      "target": "(1250.0x0.4xDX51D+Z)",
+      "value": 7.7220000000000155
+    },
+    {
+      "source": "(1270.0x2.0xDD11)",
+      "target": "(967.0x0.5xDX51D+Z)",
+      "value": 0.558
+    },
+    {
+      "source": "(1270.0x2.0xDD11)",
+      "target": "(1250.0x0.82xDX51D+Z)",
+      "value": 25.0
+    },
+    {
+      "source": "(1270.0x2.0xDD11)",
+      "target": "(1250.0x0.9xDX51D+Z)",
+      "value": 26.249999999999986
+    },
+    {
+      "source": "(1270.0x2.0xDD11)",
+      "target": "(1250.0x2.0xDX51D+Z)",
+      "value": 11.400000000000006
+    },
+    {
+      "source": "(1270.0x2.5xDD11)",
+      "target": "(1250.0x0.8xDX51D+Z)",
+      "value": 80.57
+    },
+    {
+      "source": "(1270.0x2.5xDD11)",
+      "target": "(1250.0x0.9xDX51D+Z)",
+      "value": 12.190000000000012
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1500.0x1.0xDX51D+Z)",
+      "value": 71.79
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1500.0x1.2xDX51D+Z)",
+      "value": 74.16
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1250.0x1.4xDX51D+Z)",
+      "value": 4.270000000000003
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1500.0x1.4xDX51D+Z)",
+      "value": 33.620000000000005
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1250.0x1.45xDX51D+Z)",
+      "value": 0.04999999999999716
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1250.0x1.5xDX51D+Z)",
+      "value": 1.0099999999999998
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1500.0x1.5xDX51D+Z)",
+      "value": 261.88
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1500.0x1.5xS350GD+Z)",
+      "value": 111.734
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1500.0x2.0xDX51D+Z)",
+      "value": 14.190999999999999
+    },
+    {
+      "source": "(1520.0x3.0xDD11)",
+      "target": "(1500.0x3.0xDX51D+Z)",
+      "value": 1.3449999999999966
+    },
+    {
+      "source": "(1520.0x3.5xDD11)",
+      "target": "(1500.0x1.4xDX51D+Z)",
+      "value": 4.699999999999999
+    },
+    {
+      "source": "(1520.0x3.5xDD11)",
+      "target": "(1500.0x2.0xDX51D+Z)",
+      "value": 20.0
+    },
+    {
+      "source": "(1020.0x1.8xDD11)",
+      "target": "(1000.0x0.3xDX51D+Z)",
+      "value": 20.0
+    },
+    {
+      "source": "(1020.0x1.8xDD11)",
+      "target": "(1000.0x0.38xDX51D+Z)",
+      "value": 235.0
+    },
+    {
+      "source": "(1020.0x1.8xDD11)",
+      "target": "(1000.0x0.4xDX51D+Z)",
+      "value": 9.51
+    },
+    {
+      "source": "(1020.0x1.8xDD11)",
+      "target": "(1000.0x0.43xDX51D+Z)",
+      "value": 30.58168750733455
+    },
+    {
+      "source": "(1020.0x1.8xDD11)",
+      "target": "(1000.0x0.5xDX51D+Z)",
+      "value": 194.39
+    },
+    {
+      "source": "(1020.0x1.8xDD11)",
+      "target": "(1000.0x0.5xDX51DT+Z)",
+      "value": 15.19679489380104
+    },
+    {
+      "source": "(1020.0x1.8xDD11)",
+      "target": "(1000.0x0.66xDX51D+Z)",
+      "value": 15.571517598864315
+    },
+    {
+      "source": "(1020.0x1.8xDD11)",
+      "target": "(1000.0x0.7xDX51D+Z)",
+      "value": 47.33
+    },
+    {
+      "source": "(1020.0x1.8xDD11)",
+      "target": "(1000.0x1.8xDX51D+Z)",
+      "value": 87.34
+    },
+    {
+      "source": "(1220.0x1.8xDD11)",
+      "target": "(1200.0x0.4xDX51D+Z)",
+      "value": 20.0
+    },
+    {
+      "source": "(1220.0x1.8xDD11)",
+      "target": "(1200.0x0.43xDX51DT+Z)",
+      "value": 25.0
+    },
+    {
+      "source": "(1220.0x1.8xDD11)",
+      "target": "(1200.0x0.6xDX51D+Z)",
+      "value": 3.230000000000004
+    },
+    {
+      "source": "(1220.0x1.8xDD11)",
+      "target": "(1220.0x0.6xDX51DT+Z)",
+      "value": 33.71
+    },
+    {
+      "source": "(1220.0x1.8xDD11)",
+      "target": "(1220.0x0.7xDX51DT+Z)",
+      "value": 52.58
+    },
+    {
+      "source": "(1250.0x5.0x6422)",
+      "target": "(1250.0x5.0xDD11)",
+      "value": 0.5415470085058943
+    },
+    {
+      "source": "(945.0x2.6xS315MC)",
+      "target": "(1000.0x1.2xS280GD+Z)",
+      "value": 134.58
+    },
+    {
+      "source": "(1000.0x4.0xS315MC)",
+      "target": "(980.0x4.0xS350GD+Z)",
+      "value": 53.52
+    },
+    {
+      "source": "(1220.0x2.0xDD11)",
+      "target": "(1000.0x0.6xDX51DT+Z)",
+      "value": 6.139999999999999
+    },
+    {
+      "source": "(1220.0x2.0xDD11)",
+      "target": "(1200.0x0.8xDX51D+Z)",
+      "value": 472.28
+    },
+    {
+      "source": "(1220.0x2.0xDD11)",
+      "target": "(1500.0x1.0xDX51D+Z)",
+      "value": 148.0
+    },
+    {
+      "source": "(1005.0x3.0xS315MC)",
+      "target": "(985.0x3.0xS350GD+Z)",
+      "value": 54.62
+    },
+    {
+      "source": "(1220.0x3.0xDD11)",
+      "target": "(1200.0x0.6xDX51DT+Z)",
+      "value": 0.7799999999999994
+    },
+    {
+      "source": "(1220.0x3.0xDD11)",
+      "target": "(1200.0x1.0xDX51D+Z)",
+      "value": 12.919999999999998
+    },
+    {
+      "source": "(1220.0x3.0xDD11)",
+      "target": "(1200.0x1.0xS280GD+Z)",
+      "value": 8.170000000000002
+    },
+    {
+      "source": "(1220.0x3.0xDD11)",
+      "target": "(1200.0x1.15xDX51D+Z)",
+      "value": 3.6900000000000013
+    },
+    {
+      "source": "(1220.0x3.0xDD11)",
+      "target": "(1200.0x1.2xDX51D+Z)",
+      "value": 0.9099999999999984
+    },
+    {
+      "source": "(1220.0x3.0xDD11)",
+      "target": "(1200.0x1.25xDX51D+Z)",
+      "value": 40.66792756223637
+    },
+    {
+      "source": "(1220.0x3.0xDD11)",
+      "target": "(1000.0x1.5xDX51D+Z)",
+      "value": 260.62
+    },
+    {
+      "source": "(1220.0x3.0xDD11)",
+      "target": "(1200.0x3.0xDX51D+Z)",
+      "value": 179.5420724377636
+    },
+    {
+      "source": "(1020.0x2.5xS315MC)",
+      "target": "(1000.0x2.5xS350GD+Z)",
+      "value": 7.360000000000003
+    },
+    {
+      "source": "(1020.0x2.5xS315MC)",
+      "target": "(1500.0x3.0xDX51D+Z)",
+      "value": 10.399999999999999
+    },
+    {
+      "source": "(1020.0x4.0xS315MC)",
+      "target": "(1515.0x1.2xDX51D+Z)",
+      "value": 19.19419891482448
+    },
+    {
+      "source": "(1020.0x4.0xS315MC)",
+      "target": "(1000.0x4.0xS350GD+Z)",
+      "value": 34.14580108517552
+    },
+    {
+      "source": "(1520.0x2.0xDD11)",
+      "target": "(1500.0x0.5xDX51D+Z)",
+      "value": 20.0
+    },
+    {
+      "source": "(1520.0x2.0xDD11)",
+      "target": "(1500.0x0.7xDX51D+Z)",
+      "value": 46.0
+    },
+    {
+      "source": "(1520.0x2.0xDD11)",
+      "target": "(1250.0x0.8xDX51D+Z)",
+      "value": 4.659999999999997
+    },
+    {
+      "source": "(1520.0x2.0xDD11)",
+      "target": "(1500.0x0.8xDX51D+Z)",
+      "value": 86.0
+    },
+    {
+      "source": "(1520.0x2.0xDD11)",
+      "target": "(1500.0x0.9xDX51D+Z)",
+      "value": 20.0
+    },
+    {
+      "source": "(1270.0x3.5xDD11)",
+      "target": "(1250.0x2.0xDX51D+Z)",
+      "value": 116.6
+    },
+    {
+      "source": "(1020.0x3.0xS315MC)",
+      "target": "(1000.0x1.2xDX51D+Z)",
+      "value": 34.3
+    },
+    {
+      "source": "(1270.0x3.0xDD11)",
+      "target": "(1250.0x1.0xDX51D+Z)",
+      "value": 2.8100000000000023
+    },
+    {
+      "source": "(1190.0x4.0xS315MC)",
+      "target": "(1168.0x2.0xS350GD+Z)",
+      "value": 8.30102398060482
+    },
+    {
+      "source": "(1220.0x3.5xDD11)",
+      "target": "(1200.0x0.5xDX51D+Z)",
+      "value": 199.372
+    },
+    {
+      "source": "(1220.0x3.5xDD11)",
+      "target": "(1200.0x1.4xDX51D+Z)",
+      "value": 4.92
+    },
+    {
+      "source": "(1220.0x3.5xDD11)",
+      "target": "(1200.0x1.5xDX51D+Z)",
+      "value": 1.3549999999999986
+    },
+    {
+      "source": "(1220.0x3.5xDD11)",
+      "target": "(1200.0x1.75xDX51D+Z)",
+      "value": 12.95608426750653
+    },
+    {
+      "source": "(1220.0x3.5xDD11)",
+      "target": "(1212.0x1.8xDX51D+Z)",
+      "value": 2.85851618564382
+    },
+    {
+      "source": "(1220.0x3.5xDD11)",
+      "target": "(1200.0x2.0xDX51D+Z)",
+      "value": 55.618399546849645
+    },
+    {
+      "source": "(1270.0x2.5xS315MC)",
+      "target": "(1250.0x1.2xDX51D+Z)",
+      "value": 24.14909414972034
+    },
+    {
+      "source": "(1270.0x2.5xS315MC)",
+      "target": "(1250.0x2.5xS320GD+Z)",
+      "value": 0.01090585027966124
+    },
+    {
+      "source": "(1296.0x2.6xS315MC)",
+      "target": "(1274.0x2.6xS350GD+Z)",
+      "value": 2.8790728385164996
+    },
+    {
+      "source": "(1520.0x1.8xS315MC)",
+      "target": "(1500.0x0.8xS350GD+Z)",
+      "value": 151.1453641925825
+    },
+    {
+      "source": "(1520.0x1.8xS315MC)",
+      "target": "(1500.0x2.5xS350GD+Z)",
+      "value": 118.80894738178243
+    },
+    {
+      "source": "(1230.0x3.5xS315MC)",
+      "target": "(908.0x3.5xS350GD+Z)",
+      "value": 26.89132818520913
+    },
+    {
+      "source": "(1230.0x3.8xS315MC)",
+      "target": "(908.0x3.8xS350GD+Z)",
+      "value": 8.766431123169786
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1000.0x0.43xDX51D+Z)",
+      "value": 49.41831249266545
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1000.0x0.43xDX51DT+Z)",
+      "value": 797.96
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1250.0x0.5xDX51D+Z)",
+      "value": 55.68
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1000.0x0.55xDX51DT+Z)",
+      "value": 2.687
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1000.0x0.58xDX51D+Z)",
+      "value": 18.390222775105933
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1000.0x0.6xDX51D+Z)",
+      "value": 12.5
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1200.0x0.6xDX51D+Z)",
+      "value": 16.5
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1000.0x0.7xDX51DT+Z)",
+      "value": 8.630000000000003
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1000.0x0.8xDX51D+Z)",
+      "value": 21.34
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1000.0x1.0xDX51D+Z)",
+      "value": 5.469999999999999
+    },
+    {
+      "source": "(1020.0x2.0xDD11)",
+      "target": "(1020.0x2.0xDD11)",
+      "value": 3.774464732228565
+    },
+    {
+      "source": "(1020.0x3.0xDD11)",
+      "target": "(1020.0x1.35xDX51D+Z)",
+      "value": 75.18
+    },
+    {
+      "source": "(1020.0x3.5xDD11)",
+      "target": "(1020.0x1.35xDX51D+Z)",
+      "value": 75.04
+    },
+    {
+      "source": "(1080.0x1.8xS275JR)",
+      "target": "(1080.0x0.8xDX51D+Z)",
+      "value": 36.766453060826635
+    },
+    {
+      "source": "(1220.0x2.5xDD11)",
+      "target": "(1200.0x0.5xDX51D+Z)",
+      "value": 996.4963655460534
+    },
+    {
+      "source": "(1220.0x2.5xDD11)",
+      "target": "(1200.0x0.5xDX51DT+Z)",
+      "value": 3.300999999999995
+    },
+    {
+      "source": "(1220.0x2.5xDD11)",
+      "target": "(1220.0x0.7xDX51DT+Z)",
+      "value": 157.21
+    },
+    {
+      "source": "(1220.0x2.5xDD11)",
+      "target": "(1200.0x1.2xDX51DT+Z)",
+      "value": 27.692634453946646
+    },
+    {
+      "source": "(1220.0x2.5xS315MC)",
+      "target": "(1190.0x1.0xS350GD+Z)",
+      "value": 22.67180462888738
+    },
+    {
+      "source": "(1220.0x4.0xS315MC)",
+      "target": "(1200.0x2.0xS350GD+Z)",
+      "value": 42.66
+    },
+    {
+      "source": "(1213.0x2.5xS235JR+M)",
+      "target": "(1200.0x2.5xS235JR)",
+      "value": 0.24353255793601694
+    }
+  ],
+  "categories": [
+    {
+      "name": "HRC"
+    },
+    {
+      "name": "Product"
+    }
+  ]
+}

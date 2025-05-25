@@ -1,5 +1,5 @@
 from gurobipy import Model, GRB, quicksum
-
+import matplotlib.pyplot as plt
 from preprocess.preprocessModel import preprocessModel
 
 from itertools import combinations
@@ -185,3 +185,75 @@ with open("results/echarts_graph.json", "w") as f:
 
 # veya terminalde yazdırmak istersen:
 print(json.dumps(graph_data, indent=2))
+
+
+# -------------------- Bar Chart: Assigned vs Unmet per SpecGroup --------------------
+'''
+
+# Aggregate assigned and unmet demand per product (j)
+assigned_per_j = {}
+unmet_per_j = {}
+
+for (i, j, u), x_val in x_iju.items():
+    assigned_per_j[j] = assigned_per_j.get(j, 0) + x_val
+
+for (j, u), y_val in y_ju.items():
+    unmet_per_j[j] = unmet_per_j.get(j, 0) + y_val
+
+# Combine into plotting data
+all_j = sorted(set(assigned_per_j.keys()).union(unmet_per_j.keys()))
+plot_data = []
+
+for j in all_j:
+    plot_data.append({
+        "SpecGroup": dictTanimJ[j],
+        "Assigned": assigned_per_j.get(j, 0),
+        "Unmet": unmet_per_j.get(j, 0)
+    })
+
+df_plot = pd.DataFrame(plot_data)
+
+# Plot stacked bar chart
+plt.figure(figsize=(12, 6))
+plt.bar(df_plot["SpecGroup"], df_plot["Assigned"], label="Assigned", color="green")
+plt.bar(df_plot["SpecGroup"], df_plot["Unmet"], bottom=df_plot["Assigned"], label="Unmet", color="red")
+
+plt.xlabel("SpecGroup / Grade")
+plt.ylabel("Tons")
+plt.title("Tahsis (Assigned) ve Karşılanamayan (Unmet) Talep - SpecGroup Bazında")
+plt.legend()
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save and show
+plt.savefig("results/specgroup_bar_chart.png", dpi=300)
+plt.show()'''
+
+# -------------------- Network Graph: HRC to Product Assignments --------------------
+# Create a directed graph
+G = nx.DiGraph()
+# Add nodes and edges
+for (i, j, u), x_val in x_iju.items():
+    if x_val > 1e-5:  # Only add edges with significant assignment
+        G.add_edge(dictTanimI[i], dictTanimJ[j], weight=x_val)
+# Draw the graph
+pos = bipartite_layout(G, nodes=[dictTanimI[i] for i in setI])
+nx.draw(G, pos, with_labels=True, node_size=30, node_color="lightblue", font_size=0, font_color="black", arrows=True)
+plt.title("HRC to Product Assignments")
+plt.savefig("results/hrc_product_network_graph.png", dpi=300)
+plt.show()
+# -------------------- Network Graph: HRC to Product Assignments (ECharts Format) --------------------
+# Convert to ECharts format
+echarts_nodes = [{"name": node, "category": 0 if node in dictTanimI.values() else 1} for node in G.nodes()]
+echarts_links = [{"source": str(u), "target": str(v), "value": d['weight']} for u, v, d in G.edges(data=True)]
+echarts_graph = {
+    "nodes": echarts_nodes,
+    "links": echarts_links,
+    "categories": [{"name": "HRC"}, {"name": "Product"}]
+}
+# Save to JSON
+with open("results/hrc_product_network_echarts.json", "w") as f:
+    json.dump(echarts_graph, f, indent=2)
+# Print completion message
+print("Network graph saved to results/hrc_product_network_echarts.json")
+# -------------------- End of Code --------------------
