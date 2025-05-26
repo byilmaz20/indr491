@@ -190,28 +190,6 @@ def preprocessModel():
         columns=["SpecGroupId", "Urgency", "Siparis_TON"]
     )
     dju_df.to_excel("preprocessedBelgeler/dju_df.xlsx", index=False)"""
-    
-    #print("dju_df: ", dju_df.head())
-
-    """#log these to a txt
-    with open("preprocessedBelgeler/setIJ.txt", "w") as f:
-        for j in setJ:
-            if sum(dju[(j,u)] for u in [1,2]) > 0:
-                f.write(f"SpecGroupId: {j} ({genislik_j[j]}x{kalinlik_j[j]}x{grade_j[j]}) Demand: {dju[(j, 1)]} {dju[(j, 2)]} {dju[(j, 3)]}\n")
-                for i in setI:
-                    if H_i[i] > 0 and (i,j) in setIJ:
-                        f.write(f"Hammadde: ({genislik_i[i]}x{kalinlik_i[i]}x{grade_i[i]}) Stok: {H_i[i]} \n")
-    """
-
-    
-
-    """for j in setJ:
-        if sum(dju[(j,u)] for u in setU) > 0:
-            print(f"SpecGroupId: {j} ({genislik_j[j]}x{kalinlik_j[j]}x{grade_j[j]}) Demand: {dju[(j, 1)]} {dju[(j, 2)]} {dju[(j, 3)]}")
-            for i in setI:
-                if H_i[i] > 0 and (i,j) in setIJ:
-                    print(f"Hammadde: ({genislik_i[i]}x{kalinlik_i[i]}x{grade_i[i]}) Stok: {H_i[i]} ")
-    """
 
     
 
