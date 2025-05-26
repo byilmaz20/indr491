@@ -2,6 +2,7 @@ from gurobipy import Model, GRB, quicksum
 from preprocess.preprocessModel import preprocessModel
 import matplotlib.pyplot as plt
 import numpy as np
+import math
 
 def solve_fractional_assignment_with_urgency(setI, setJ, setU, setIJ, Hi, d_ju, partial = True):
     """
@@ -181,10 +182,10 @@ plt.tight_layout()
 plt.savefig("results/aciliyet_barplot.png")
 plt.show()
 
-
 import networkx as nx
 import matplotlib.pyplot as plt
 from collections import defaultdict
+import matplotlib.patches as mpatches
 
 # Create graph
 G = nx.DiGraph()
@@ -206,7 +207,7 @@ for j in setJ:
     node_colors[node_id] = '#2ca02c'  # green for order
     node_labels[node_id] = dictTanimJ[j]
 
-# Add summed edges (i,j)
+# Add edges and compute assignment sum
 assignment_sum = defaultdict(float)
 for (i, j, u), val in x_iju.items():
     if val > 1e-6:
@@ -214,28 +215,43 @@ for (i, j, u), val in x_iju.items():
 
 for (i, j), val in assignment_sum.items():
     G.add_edge(f"RM-{i}", f"ORD-{j}", weight=val)
-    #print(val)
 
 # Graph layout
-pos = nx.spring_layout(G, k=0.2, iterations=50, seed=42)  # "spring force" layout
+pos = nx.spring_layout(G, k=0.2, iterations=50, seed=42)
 
-# Draw nodes with color by type
+# Compute node opacity
+node_opacity = {}
+for node in G.nodes():
+    if node.startswith("ORD-"):
+        j = int(node.split("-")[1])
+        total_demand = sum(dju.get((j, u), 0) for u in setU)
+        total_assigned = sum(x_iju.get((i, j, u), 0) for i in setI for u in setU if (i, j) in setIJ)
+        fulfillment_ratio = total_assigned / total_demand if total_demand > 0 else 0
+        node_opacity[node] = min(max(fulfillment_ratio, 0.4), 1.0)
+
+    elif node.startswith("RM-"):
+        i = int(node.split("-")[1])
+        initial_qty = H_i.get(i, 0)  # Başlangıç miktarı
+        used_qty = sum(x_iju.get((i, j, u), 0) for j in setJ for u in setU if (i, j) in setIJ)
+        usage_ratio = used_qty / initial_qty if initial_qty > 0 else 0
+        node_opacity[node] = min(max(usage_ratio, 0.4), 1.0)
+
+
+# Draw nodes
 node_color_list = [node_colors[n] for n in G.nodes()]
-nx.draw_networkx_nodes(G, pos, node_size=10, node_color=node_color_list, alpha=0.9)
+node_alpha_list = [node_opacity[n] for n in G.nodes()]
+nx.draw_networkx_nodes(G, pos, node_size=10, node_color=node_color_list, alpha=node_alpha_list)
 
 # Draw edges with width proportional to tons assigned
 edges = G.edges(data=True)
 
-edge_widths = [max(10, d['weight'] / 10)/10 for (_, _, d) in edges]
-#no arrows
+edge_widths = [math.log10(d['weight'] + 1) for (_, _, d) in edges]
 nx.draw_networkx_edges(G, pos, edgelist=edges, width=edge_widths, edge_color='gray', alpha=0.6, arrows=False)
-#nx.draw_networkx_edges(G, pos, edgelist=edges, width=edge_widths, edge_color='gray', alpha=0.6)
 
 # Optional: draw node labels
 #nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=7)
 
 # Legend
-import matplotlib.patches as mpatches
 legend_handles = [
     mpatches.Patch(color='#1f77b4', label='Raw Material'),
     mpatches.Patch(color='#2ca02c', label='Order'),
