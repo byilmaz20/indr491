@@ -3,6 +3,11 @@ from preprocess.preprocessModel import preprocessModel
 import matplotlib.pyplot as plt
 import numpy as np
 import math
+import networkx as nx
+import matplotlib.pyplot as plt
+from collections import defaultdict
+import matplotlib.patches as mpatches
+
 
 def solve_fractional_assignment_with_urgency(setI, setJ, setU, setIJ, Hi, d_ju, partial = True):
     """
@@ -107,7 +112,7 @@ for (i, j, u), value in x_iju.items():
         resultDF.at[row, "Talep Aciliyeti"] = "Acil" if u == 1 else "Normal" if u == 2 else "Tahmin"
         resultDF.at[row, "Tahsis (ton)"] = value
         row += 1
-resultDF.to_excel("results/assignmentModel.xlsx", index=False)
+#resultDF.to_excel("results/assignmentModel.xlsx", index=False)
 
 ozetDF = pd.DataFrame(columns=["Aciliyet", "Talep (ton)", "Tahsis (ton)", "Tahsis Oranı"])
 row = 0
@@ -142,16 +147,13 @@ for i in setI:
     row += 1
 hammaddeKullanımDF.to_excel("results/hammaddeKullanım.xlsx", index=False)    
 
-
-# Aciliyet bilgileri
+# BAR CHART
 urgency_labels = {1: "Urgent Orders", 2: "Normal Orders", 3: "Forecast Orders"}
-urgency_colors = {'Met Demand': '#4CAF50', 'Unmet Demand': '#F44336'}  # Green and Red
+urgency_colors = {'Met Demand': '#4CAF50', 'Unmet Demand': '#F44336'}
 
-# X ekseninde aciliyet seviyeleri
 x = [urgency_labels[u] for u in setU]
 x_indices = np.arange(len(setU))
 
-# Y ekseninde tahsis ve karşılanamayan miktarlar
 assigned_vals = []
 unmet_vals = []
 
@@ -159,42 +161,71 @@ for u in setU:
     total_demand = sum(dju[(j, u)] for j in setJ)
     total_assigned = sum(x_iju[(i, j, u)] for (i, j) in setIJ)
     total_unmet = total_demand - total_assigned
-    if u==3:
+    if u == 3:
         total_unmet = 0
-
     assigned_vals.append(total_assigned)
     unmet_vals.append(total_unmet)
 
-# Grafiği çiz
 plt.figure(figsize=(8, 6))
 plt.bar(x_indices, assigned_vals, color=urgency_colors['Met Demand'], label='Assigned Orders (tons)')
 plt.bar(x_indices, unmet_vals, bottom=assigned_vals, color=urgency_colors['Unmet Demand'], label='Not Assigned Orders (tons)')
-
-# Etiketler ve düzen
 plt.xticks(x_indices, x)
 plt.xlabel('Urgency of Orders')
 plt.ylabel('Total Demand (tons)')
 plt.title('Order Fulfillment by Urgency Level')
 plt.legend()
 plt.tight_layout()
-
-# Kaydet ve göster
-plt.savefig("results/aciliyet_barplot.png")
+plt.savefig("results/aciliyet_barplot.png",
+                dpi=600, 
+                transparent=True, 
+                bbox_inches='tight')
 plt.show()
 
-import networkx as nx
-import matplotlib.pyplot as plt
-from collections import defaultdict
-import matplotlib.patches as mpatches
+# PIE CHART
+combined_labels = []
+combined_sizes = []
+combined_colors = []
 
-# Create graph
+for u in setU:
+    label_base = urgency_labels[u]
+    met = assigned_vals[u-1]
+    unmet = unmet_vals[u-1]
+    
+    if met > 0:
+        combined_labels.append(f"{label_base} – Met")
+        combined_sizes.append(met)
+        combined_colors.append('#4CAF50')  # Green
+    
+    if unmet > 0:
+        combined_labels.append(f"{label_base} – Unmet")
+        combined_sizes.append(unmet)
+        combined_colors.append('#F44336')  # Red
+
+plt.figure(figsize=(7, 7))
+plt.pie(
+    combined_sizes,
+    labels=combined_labels,
+    autopct='%1.1f%%',
+    startangle=140,
+    colors=combined_colors,
+    wedgeprops={'edgecolor': 'white', 'linewidth': 2}
+)
+plt.title('Met vs Unmet Demand by Urgency Level')
+plt.axis('equal')
+plt.tight_layout()
+plt.savefig("results/combined_met_unmet_piechart_bordered.png",
+                dpi=600, 
+                transparent=True, 
+                bbox_inches='tight')
+plt.show()
+
+
+
+# NETWORK GRAPH
 G = nx.DiGraph()
-
-# Node types and colors
 node_colors = {}
 node_labels = {}
 
-# Add nodes with types
 for i in setI:
     node_id = f"RM-{i}"
     G.add_node(node_id)
@@ -207,7 +238,6 @@ for j in setJ:
     node_colors[node_id] = '#2ca02c'  # green for order
     node_labels[node_id] = dictTanimJ[j]
 
-# Add edges and compute assignment sum
 assignment_sum = defaultdict(float)
 for (i, j, u), val in x_iju.items():
     if val > 1e-6:
@@ -215,11 +245,8 @@ for (i, j, u), val in x_iju.items():
 
 for (i, j), val in assignment_sum.items():
     G.add_edge(f"RM-{i}", f"ORD-{j}", weight=val)
-
-# Graph layout
 pos = nx.spring_layout(G, k=0.2, iterations=50, seed=42)
 
-# Compute node opacity
 node_opacity = {}
 for node in G.nodes():
     if node.startswith("ORD-"):
@@ -236,33 +263,28 @@ for node in G.nodes():
         usage_ratio = used_qty / initial_qty if initial_qty > 0 else 0
         node_opacity[node] = min(max(usage_ratio, 0.4), 1.0)
 
-
-# Draw nodes
 node_color_list = [node_colors[n] for n in G.nodes()]
 node_alpha_list = [node_opacity[n] for n in G.nodes()]
 nx.draw_networkx_nodes(G, pos, node_size=10, node_color=node_color_list, alpha=node_alpha_list)
 
-# Draw edges with width proportional to tons assigned
 edges = G.edges(data=True)
 
 edge_widths = [math.log10(d['weight'] + 1) for (_, _, d) in edges]
 nx.draw_networkx_edges(G, pos, edgelist=edges, width=edge_widths, edge_color='gray', alpha=0.6, arrows=False)
 
-# Optional: draw node labels
-#nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=7)
-
-# Legend
 legend_handles = [
     mpatches.Patch(color='#1f77b4', label='Raw Material'),
     mpatches.Patch(color='#2ca02c', label='Order'),
 ]
 plt.legend(handles=legend_handles, loc='best')
 
-# Finalize
 plt.title("Assignment Network: Raw Materials to Orders")
 plt.axis('off')
 plt.tight_layout()
-plt.savefig("results/assignment_network_force_layout.png")
+plt.savefig("results/assignment_network_force_layout.png",
+                dpi=600, 
+                transparent=True, 
+                bbox_inches='tight')
 plt.show()
 
 

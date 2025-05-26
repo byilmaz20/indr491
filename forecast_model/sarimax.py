@@ -354,7 +354,8 @@ for grade in grade_list:
     ax[1].set_title(f"{grade} - PACF (Sipariş Mik.)")
 
     plt.tight_layout()
-    plt.show()
+    #plt.show()
+
     
     # 4. Tahmin (örnek: 7 ay ileri)
     forecast = results.get_forecast(steps=8)
@@ -554,7 +555,7 @@ for grade in grade_list:
     ax[1].set_title(f"{grade} - PACF (Sipariş Mik.)")
 
     plt.tight_layout()
-    plt.show()
+    #plt.show()
     
     # 4. Tahmin (örnek: 7 ay ileri)
     forecast = results.get_forecast(steps=3)
@@ -744,7 +745,7 @@ for month in target_months:
     plt.xticks(rotation=45)
     plt.legend(["Forecasted", "Actual"])
     plt.tight_layout()
-    plt.show()
+    #plt.show()
 
 
 
@@ -759,6 +760,8 @@ for spec_id in selected_spec_ids:
     actual_series = df[df['SpecGroupId'] == spec_id][['Month', 'Sipariş Mik. (TON)']].copy()
     actual_series = actual_series.groupby('Month').sum().sort_index()
     actual_series.rename(columns={'Sipariş Mik. (TON)': 'Actual'}, inplace=True)
+    #filter between 2022-01 and 2025-02
+    actual_series = actual_series.loc['2022-01':'2025-02']
 
     # 🔹 Tahmin verileri (disaggregated)
     forecast_series = disaggregated_df[disaggregated_df['SpecGroupId'] == spec_id][['Month', 'Forecast_TON']].copy()
@@ -775,14 +778,46 @@ for spec_id in selected_spec_ids:
 
     plt.plot(merged.index, merged['Actual'], label='Actual', marker='o', color='grey')
     plt.plot(merged.index, merged['Forecast'], label='Forecast', linestyle='--', marker='x', color='red')
-    plt.title(f"SpecGroupId {spec_id} ({dictTanimJ[int(spec_id)]})– Forecasted vs Actual Orders")
+    plt.title(f"SpecGroupId {spec_id} {dictTanimJ[int(spec_id)]}– Forecasted vs Actual Orders")
     plt.xlabel("Month")
     plt.ylabel("Ordered Amount (Tons)")
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    #plt.show()
+    plt.savefig(f"results/spec_{spec_id}_forecast_vs_actual.png", 
+                dpi=600, 
+                transparent=True, 
+                bbox_inches='tight')
 
+# GradeGroup "A" için geçmiş (gerçek) veriler
+actual_a = df[df['GradeGroup'] == 'A'].groupby('Month')['Sipariş Mik. (TON)'].sum().sort_index()
+actual_a.name = 'Actual'
+#filter between 2022-01 and 2025-02
+actual_a = actual_a.loc['2022-01':'2025-02']
+
+# GradeGroup "A" için tahmin (disaggregated) veriler
+forecast_a = disaggregated_df[disaggregated_df['GradeGroup'] == 'A'].groupby('Month')['Forecast_TON'].sum().sort_index()
+forecast_a.name = 'Forecast'
+
+# Verileri birleştir
+merged_a = pd.concat([actual_a, forecast_a], axis=1)
+
+# Grafik çiz
+plt.figure(figsize=(12, 5))
+plt.plot(merged_a.index, merged_a['Actual'], label='Actual', marker='o', color='grey')
+plt.plot(merged_a.index, merged_a['Forecast'], label='Forecast', linestyle='--', marker='x', color='red')
+plt.title("GradeGroup 'A' (DX51D+Z, DX51DT+Z, S220GD+Z, S250GD+Z, S280GD+Z) – Forecasted vs Actual Orders (Monthly Total)")
+plt.xlabel("Month")
+plt.ylabel("Ordered Amount (Tons)")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.savefig("results/grade_a_forecast_vs_actual.png",
+                dpi=600, 
+                transparent=True, 
+                bbox_inches='tight')
+##plt.show()
     
 import pandas as pd
 import numpy as np
