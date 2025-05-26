@@ -854,13 +854,18 @@ for spec_id in selected_spec_ids:
     # wMAPE hesapla
     wmape = 100 * np.sum(np.abs(merged['Forecast'] - merged['Actual'])) / np.sum(np.abs(merged['Actual']))
 
-    # Sonuçları DataFrame'e ekle
-    metrics_df = metrics_df.append({'SpecGroupId': spec_id,
-                                    'MAE': mae,
-                                    'MAPE (%)': mape,
-                                    'sMAPE (%)': smape,
-                                    'wMAPE (%)': wmape,
-                                    'RMSE': rmse}, ignore_index=True)
+    # Yeni satırı DataFrame olarak oluştur
+    new_row = pd.DataFrame([{
+        'SpecGroupId': spec_id,
+        'MAE': mae,
+        'MAPE (%)': mape,
+        'sMAPE (%)': smape,
+        'wMAPE (%)': wmape,
+        'RMSE': rmse
+    }])
+
+    # Eski append yerine:
+    metrics_df = pd.concat([metrics_df, new_row], ignore_index=True)
 
 # 📊 Sonuçları göster
 print(metrics_df)
@@ -894,12 +899,19 @@ if len(metrics_df) < df['SpecGroupId'].nunique():
         smape = 100 * np.mean(2 * np.abs(merged['Forecast'] - merged['Actual']) / (np.abs(merged['Actual']) + np.abs(merged['Forecast'])))
         wmape = 100 * np.sum(np.abs(merged['Forecast'] - merged['Actual'])) / np.sum(np.abs(merged['Actual']))
 
-        metrics_df = metrics_df.append({'SpecGroupId': spec_id,
-                                        'MAE': mae,
-                                        'MAPE (%)': mape,
-                                        'sMAPE (%)': smape,
-                                        'wMAPE (%)': wmape,
-                                        'RMSE': rmse}, ignore_index=True)
+        # Yeni satırı DataFrame olarak oluştur
+        new_row = pd.DataFrame([{
+            'SpecGroupId': spec_id,
+            'MAE': mae,
+            'MAPE (%)': mape,
+            'sMAPE (%)': smape,
+            'wMAPE (%)': wmape,
+            'RMSE': rmse
+        }])
+
+        # Eski append yerine:
+        metrics_df = pd.concat([metrics_df, new_row], ignore_index=True)
+
 
 # 🔝 En düşük wMAPE’ye sahip 10 SpecGroupId’yi yazdır
 top_10_spec = metrics_df.sort_values(by='wMAPE (%)').head(1321)
