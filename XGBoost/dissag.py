@@ -4,6 +4,7 @@ from xgboost import XGBRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 import matplotlib.pyplot as plt
 
+
 #gradegroup özelinde tahminle
 #sonra specgroup'lara böl sonuçları
 
@@ -158,6 +159,21 @@ def main():
     print(f"MAPE  : {mape_val:.2f}%")
     print(f"sMAPE : {smape_val:.2f}%")
     print(f"wMAPE : {wmape_val:.2f}%\n")
+    
+    grade_actual = g_test[g_target]
+    grade_pred   = g_test["grade_pred"]
+    grade_wmape  = wmape(grade_actual, grade_pred)
+    print(f"Grade-level WMAPE: {grade_wmape:.2f}%")
+    
+ 
+    # Grade-level MAE
+    #grade_mae = mean_absolute_error(grade_actual, grade_pred)
+    #print(f"Grade-level MAE: {grade_mae:.2f}")
+
+    # Grade-level RMSE (manuel)
+    #mse = mean_squared_error(grade_actual, grade_pred)
+    #grade_rmse = np.sqrt(mse)
+    #print(f"Grade-level RMSE: {grade_rmse:.2f}")
 
     # --- 9) Plot example SpecGroupId forecast ---
     example_ids = result["SpecGroupId"].unique()
